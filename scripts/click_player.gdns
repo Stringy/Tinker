@@ -1,8 +1,0 @@
-[gd_resource type="NativeScript" load_steps=2 format=2]
-
-[ext_resource path="res://rust_library.tres" type="GDNativeLibrary" id=1]
-
-[resource]
-resource_name = "ClickPlayer"
-class_name = "ClickPlayer"
-library = ExtResource( 1 )
