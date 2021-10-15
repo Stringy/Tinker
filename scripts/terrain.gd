@@ -1,18 +1,22 @@
-extends TileMap
+extends Node2D
 
-var TILES = {
-	'grass': 0,
-	'grass_v1': 1,
-	'grass_v2': 2,
-	'grass_v3': 3
-}
 
 var noise
 
+# the seed for the opensimplexnoise.
+# TODO: make it random
 export (int) var noise_seed = 250
-export (int) var width = 256
-export (int) var height = 256
-export (int) var tile_size = 32
+
+# the width/height of the terrain (in tiles)
+export (Vector2) var size = Vector2(256, 256)
+
+# the size of the border (in tiles)
+export (Vector2) var border = Vector2(32, 32)
+
+# These are used to store the computed internal
+# rectangle to trigger further terrain generation
+var top_left
+var bounds = Rect2()
 
 func _ready():
 	randomize()
@@ -22,27 +26,24 @@ func _ready():
 	noise.period = 15
 	noise.lacunarity = 1.5
 	noise.persistence = 0.75
+	
+	top_left = self.position - (self.size / 2) + self.border
+	bounds = Rect2(top_left, self.size - self.border)
+	$Ground.generate(noise, self.position, self.size.x, self.size.y)
 
 func _generate_world(position):
-	print(position.x, " ", position.y)
-	
-	position = self.world_to_map(position)
+	#
+	# If you consider the generated terrain to be a rectangle,
+	# we compute an concentric rectangle to decide whether the position is
+	# getting close to an edge, so we need to generate some more terrain.
+	#
+	# If the position is outside the inner box, then we generate a new
+	# rectangle of generated terrain around the position, and update the
+	# border accordingly.
+	#
+	var center = $Ground.world_to_map(position)
+	if not self.bounds.has_point(center):
+		$Ground.generate(noise, position, self.size.x, self.size.y)
+		top_left = center - (self.size / 2) + self.border
+		bounds = Rect2(top_left, self.size - self.border)
 
-	var x_coord = position.x - (width / 2)
-	var y_coord = position.y - (height / 2)
-
-	for y in height:
-		for x in width:
-			self.set_cellv(
-				Vector2(x_coord + x, y_coord + y),
-				_get_tile_index(noise.get_noise_2d(float(x_coord + x), float(y_coord + y)))
-			)
-	
-func _get_tile_index(sample):
-	if sample < -0.3:
-		return TILES.grass
-	if sample < -0.1:
-		return TILES.grass_v1
-	if sample < 0.3:
-		return TILES.grass_v2
-	return TILES.grass_v3

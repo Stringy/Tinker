@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/terrain.gd" type="Script" id=1]
+[ext_resource path="res://tiles/grass_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://scripts/ground.gd" type="Script" id=3]
+
+[node name="Terrain" type="Node2D"]
+script = ExtResource( 1 )
+size = Vector2( 64, 64 )
+
+[node name="Ground" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+script = ExtResource( 3 )
