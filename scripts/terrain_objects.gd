@@ -1,11 +1,21 @@
 extends TileMap
 
 
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
 var TILES = {
-	'grass': 0,
-	'grass_v1': 1,
-	'grass_v2': 2,
-	'grass_v3': 3
+	'empty': -1,
+	'long_grass_1': 0,
+	'long_grass_2': 1,
+	'long_grass_3': 2,
 }
 
 func generate(noise, position, size):
@@ -22,10 +32,10 @@ func generate(noise, position, size):
 			)
 
 func _get_tile_index(sample):
+	if sample < -0.5:
+		return TILES.long_grass_1
 	if sample < -0.3:
-		return TILES.grass
+		return TILES.long_grass_2
 	if sample < -0.1:
-		return TILES.grass_v1
-	if sample < 0.3:
-		return TILES.grass_v2
-	return TILES.grass_v3
+		return TILES.long_grass_3
+	return TILES.empty

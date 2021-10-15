@@ -1,7 +1,8 @@
 extends Node2D
 
 
-var noise
+var ground_noise
+var object_noise
 
 # the seed for the opensimplexnoise.
 # TODO: make it random
@@ -20,16 +21,24 @@ var bounds = Rect2()
 
 func _ready():
 	randomize()
-	noise = OpenSimplexNoise.new()
-	noise.seed = noise_seed
-	noise.octaves = 4
-	noise.period = 15
-	noise.lacunarity = 1.5
-	noise.persistence = 0.75
-	
+	ground_noise = OpenSimplexNoise.new()
+	ground_noise.seed = noise_seed
+	ground_noise.octaves = 4
+	ground_noise.period = 15
+	ground_noise.lacunarity = 1.5
+	ground_noise.persistence = 0.75
+
+	object_noise = OpenSimplexNoise.new()
+	object_noise.seed = noise_seed
+	object_noise.octaves = 1
+	object_noise.period = 1
+	object_noise.lacunarity = 1.5
+	object_noise.persistence = 0.75
+
 	top_left = self.position - (self.size / 2) + self.border
-	bounds = Rect2(top_left, self.size - self.border)
-	$Ground.generate(noise, self.position, self.size.x, self.size.y)
+	bounds = Rect2(top_left, self.size - (self.border * 2))
+	$Ground.generate(ground_noise, self.position, self.size)
+	$Objects.generate(object_noise, self.position, self.size)
 
 func _generate_world(position):
 	#
@@ -43,7 +52,8 @@ func _generate_world(position):
 	#
 	var center = $Ground.world_to_map(position)
 	if not self.bounds.has_point(center):
-		$Ground.generate(noise, position, self.size.x, self.size.y)
+		$Ground.generate(ground_noise, position, self.size)
+		$Objects.generate(object_noise, position, self.size)
 		top_left = center - (self.size / 2) + self.border
-		bounds = Rect2(top_left, self.size - self.border)
+		bounds = Rect2(top_left, self.size - (self.border * 2))
 
