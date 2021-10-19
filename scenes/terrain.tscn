@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/terrain.gd" type="Script" id=1]
 [ext_resource path="res://tiles/grass_tileset.tres" type="TileSet" id=2]
@@ -6,7 +6,21 @@
 [ext_resource path="res://tiles/tiles.png" type="Texture" id=4]
 [ext_resource path="res://scripts/terrain_objects.gd" type="Script" id=5]
 
-[sub_resource type="TileSet" id=1]
+[sub_resource type="OpenSimplexNoise" id=1]
+seed = 256
+octaves = 1
+period = 1.0
+persistence = 0.75
+lacunarity = 1.5
+
+[sub_resource type="OpenSimplexNoise" id=2]
+seed = 2342134
+octaves = 1
+period = 1.0
+persistence = 0.75
+lacunarity = 1.5
+
+[sub_resource type="TileSet" id=3]
 0/name = "long_grass_0"
 0/texture = ExtResource( 4 )
 0/tex_offset = Vector2( 0, 0 )
@@ -53,6 +67,8 @@
 [node name="Terrain" type="Node2D"]
 script = ExtResource( 1 )
 size = Vector2( 64, 64 )
+ground_noise = SubResource( 1 )
+object_noise = SubResource( 2 )
 
 [node name="Ground" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
@@ -61,7 +77,7 @@ format = 1
 script = ExtResource( 3 )
 
 [node name="Objects" type="TileMap" parent="."]
-tile_set = SubResource( 1 )
+tile_set = SubResource( 3 )
 cell_size = Vector2( 32, 32 )
 format = 1
 script = ExtResource( 5 )

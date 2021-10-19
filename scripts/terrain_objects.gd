@@ -32,10 +32,10 @@ func generate(noise, position, size):
 			)
 
 func _get_tile_index(sample):
-	if sample < -0.5:
+	if sample < -0.8:
 		return TILES.long_grass_1
-	if sample < -0.3:
+	if sample < -0.6:
 		return TILES.long_grass_2
-	if sample < -0.1:
+	if sample < -0.4:
 		return TILES.long_grass_3
 	return TILES.empty

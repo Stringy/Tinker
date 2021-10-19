@@ -1,8 +1,9 @@
+tool
 extends Node2D
 
-
-var ground_noise
-var object_noise
+#
+#var ground_noise
+#var object_noise
 
 # the seed for the opensimplexnoise.
 # TODO: make it random
@@ -14,6 +15,9 @@ export (Vector2) var size = Vector2(256, 256)
 # the size of the border (in tiles)
 export (Vector2) var border = Vector2(32, 32)
 
+export (OpenSimplexNoise) var ground_noise
+export (OpenSimplexNoise) var object_noise
+
 # These are used to store the computed internal
 # rectangle to trigger further terrain generation
 var top_left
@@ -21,26 +25,15 @@ var bounds = Rect2()
 
 func _ready():
 	randomize()
-	ground_noise = OpenSimplexNoise.new()
-	ground_noise.seed = noise_seed
-	ground_noise.octaves = 4
-	ground_noise.period = 15
-	ground_noise.lacunarity = 1.5
-	ground_noise.persistence = 0.75
-
-	object_noise = OpenSimplexNoise.new()
-	object_noise.seed = noise_seed
-	object_noise.octaves = 1
-	object_noise.period = 1
-	object_noise.lacunarity = 1.5
-	object_noise.persistence = 0.75
+	ground_noise.seed = randi()
+	object_noise.seed = randi()
 
 	top_left = self.position - (self.size / 2) + self.border
 	bounds = Rect2(top_left, self.size - (self.border * 2))
 	$Ground.generate(ground_noise, self.position, self.size)
 	$Objects.generate(object_noise, self.position, self.size)
 
-func _generate_world(position):
+func _generate_world(position: Vector2):
 	#
 	# If you consider the generated terrain to be a rectangle,
 	# we compute an concentric rectangle to decide whether the position is
@@ -57,3 +50,5 @@ func _generate_world(position):
 		top_left = center - (self.size / 2) + self.border
 		bounds = Rect2(top_left, self.size - (self.border * 2))
 
+func world_to_map(position: Vector2):
+	return $Ground.world_to_map(position)

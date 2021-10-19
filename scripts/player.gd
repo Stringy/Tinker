@@ -1,17 +1,24 @@
 extends KinematicBody2D
 
 export (int) var speed = 200
+export (int) var health = 100
+export (int) var hunger = 100
+export (int) var thirst = 100
 
 var target = self.position
 var velocity = Vector2()
 var last_direction = Vector2(0, 1)
-var flip_x = false
 
 signal moved(position)
+signal died
+signal health_changed(new_health)
+signal hunger_changed(new_hunger)
+signal thirst_changed(new_thirst)
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+#	$Hunger.connect("timeout", self, "deplete_hunger")
+#	$Thirst.connect("timeout", self, "deplete_thirst")
+	pass
 	
 func _process(delta: float):
 	var direction = Vector2()
@@ -67,3 +74,28 @@ func animate_player(direction: Vector2):
 		$Sprite.play(animation)
 	
 	$Sprite.flip_h = flip_x
+	
+func deplete_hunger():
+	if self.hunger == 0:
+		self.take_damage(self, 1)
+	else:
+		self.hunger -= 1
+		emit_signal("hunger_changed", self.hunger)
+		
+	
+func deplete_thirst():
+	if self.thirst == 0:
+		self.take_damage(self, 1)
+	else:
+		self.thirst -= 1
+		emit_signal("thirst_changed", self.thirst)
+
+func take_damage(_source, amount):
+	self.health -= amount
+	if self.health <= 0:
+		$Sprite.play("death")
+		emit_signal("died")
+	else:
+		emit_signal("health_changed", self.health)
+		
+
