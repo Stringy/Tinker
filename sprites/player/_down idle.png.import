@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/_pick up.png-bf62c47a916de6432a24b66a07c28476.stex"
+path="res://.import/_down idle.png-ad030000e2705c4baa7373e26210155d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/_pick up.png"
-dest_files=[ "res://.import/_pick up.png-bf62c47a916de6432a24b66a07c28476.stex" ]
+source_file="res://sprites/player/_down idle.png"
+dest_files=[ "res://.import/_down idle.png-ad030000e2705c4baa7373e26210155d.stex" ]
 
 [params]
 

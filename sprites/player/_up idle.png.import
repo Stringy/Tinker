@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/_down attack.png-6f2b7cc0492e87cb8f9fd432a4104f55.stex"
+path="res://.import/_up idle.png-29a696f72ab0c8dfd1e2f5f6dcd4319e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/_down attack.png"
-dest_files=[ "res://.import/_down attack.png-6f2b7cc0492e87cb8f9fd432a4104f55.stex" ]
+source_file="res://sprites/player/_up idle.png"
+dest_files=[ "res://.import/_up idle.png-29a696f72ab0c8dfd1e2f5f6dcd4319e.stex" ]
 
 [params]
 
