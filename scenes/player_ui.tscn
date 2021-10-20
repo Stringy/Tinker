@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scripts/PlayerUI.gd" type="Script" id=1]
+[ext_resource path="res://scripts/player_ui.gd" type="Script" id=1]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -32,3 +32,7 @@ margin_bottom = 32.0
 [node name="Thirst" type="Label" parent="Container/Player/Stats"]
 margin_top = 36.0
 margin_bottom = 50.0
+
+[node name="Tick" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
