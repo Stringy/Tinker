@@ -5,9 +5,13 @@ export (int) var health = 100
 export (int) var hunger = 100
 export (int) var thirst = 100
 
+export (float) var base_hunger_loss = 0.5
+export (float) var base_thirst_loss = 0.5
+
 var target = self.position
 var velocity = Vector2()
 var last_direction = Vector2(0, 1)
+var moved_frames = 0
 
 signal moved(position)
 signal died
@@ -32,6 +36,13 @@ func _process(delta: float):
 		direction.x += 1.0
 		
 	animate_player(direction)
+	
+	if direction.length() > 0:
+		moved_frames += 1
+	else:
+		moved_frames -= 1
+	
+	moved_frames = clamp(moved_frames, 0, 100)
 		
 	self.velocity = direction * self.speed * delta
 	self.position += self.velocity
@@ -79,7 +90,8 @@ func deplete_hunger():
 	if self.hunger == 0:
 		self.take_damage(self, 1)
 	else:
-		self.hunger -= 1
+		var percent_moved = clamp(self.moved_frames, 0, 100)
+		self.hunger -= self.base_hunger_loss + (percent_moved * 0.02)
 		emit_signal("hunger_changed", self.hunger)
 		
 	
@@ -87,7 +99,7 @@ func deplete_thirst():
 	if self.thirst == 0:
 		self.take_damage(self, 1)
 	else:
-		self.thirst -= 1
+		self.thirst -= self.base_thirst_loss
 		emit_signal("thirst_changed", self.thirst)
 
 func take_damage(_source, amount):
