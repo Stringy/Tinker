@@ -9,16 +9,12 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Terrain._generate_world($Player.position)
-
-	$GUI.set_hunger($Player.hunger)
-	$GUI.set_health($Player.health)
-	$GUI.set_thirst($Player.thirst)
 	
 func _input(event):
 	if event.is_action_pressed("toggle_debug"):
 		$GUI/Container.visible = !$GUI/Container.visible
 	
-func _process(delta):
+func _process(_delta):
 	if $Debug.is_active():
 		$Debug.process_debug($Terrain, $Player)
 

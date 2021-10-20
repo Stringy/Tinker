@@ -1,12 +1,10 @@
 extends KinematicBody2D
 
 export (int) var speed = 200
-export (int) var health = 100
-export (int) var hunger = 100
-export (int) var thirst = 100
 
-export (float) var base_hunger_loss = 0.5
-export (float) var base_thirst_loss = 0.5
+var hunger = preload("res://resources/player/hunger.tres")
+var thirst = preload("res://resources/player/thirst.tres")
+var health = preload("res://resources/player/health.tres")
 
 var target = self.position
 var velocity = Vector2()
@@ -20,8 +18,6 @@ signal hunger_changed(new_hunger)
 signal thirst_changed(new_thirst)
 
 func _ready():
-#	$Hunger.connect("timeout", self, "deplete_hunger")
-#	$Thirst.connect("timeout", self, "deplete_thirst")
 	pass
 	
 func _process(delta: float):
@@ -87,27 +83,29 @@ func animate_player(direction: Vector2):
 	$Sprite.flip_h = flip_x
 	
 func deplete_hunger():
-	if self.hunger == 0:
+	if self.hunger.get_value() <= 0:
 		self.take_damage(self, 1)
 	else:
 		var percent_moved = clamp(self.moved_frames, 0, 100)
-		self.hunger -= self.base_hunger_loss + (percent_moved * 0.02)
-		emit_signal("hunger_changed", self.hunger)
+		self.hunger.deplete(percent_moved * 0.02)
+		emit_signal("hunger_changed", self.hunger.get_value())
 		
-	
 func deplete_thirst():
-	if self.thirst == 0:
+	if self.thirst.get_value() <= 0:
 		self.take_damage(self, 1)
 	else:
-		self.thirst -= self.base_thirst_loss
-		emit_signal("thirst_changed", self.thirst)
+		self.thirst.deplete()
+		emit_signal("thirst_changed", self.thirst.get_value())
 
 func take_damage(_source, amount):
-	self.health -= amount
-	if self.health <= 0:
-		$Sprite.play("death")
+	self.health.reduce_value(amount)
+	if self.health.get_value() <= 0:
+		# $Sprite.play("death")
 		emit_signal("died")
 	else:
-		emit_signal("health_changed", self.health)
+		emit_signal("health_changed", self.health.get_value())
 		
 
+func update_stats():
+	self.deplete_hunger()
+	self.deplete_thirst()

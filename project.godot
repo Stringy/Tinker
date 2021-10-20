@@ -8,6 +8,40 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Stat",
+"class": "Health",
+"language": "GDScript",
+"path": "res://scripts/stats/health.gd"
+}, {
+"base": "Stat",
+"class": "Hunger",
+"language": "GDScript",
+"path": "res://scripts/stats/hunger.gd"
+}, {
+"base": "Resource",
+"class": "Inventory",
+"language": "GDScript",
+"path": "res://scripts/inventory.gd"
+}, {
+"base": "Resource",
+"class": "Stat",
+"language": "GDScript",
+"path": "res://scripts/stats/stat.gd"
+}, {
+"base": "Stat",
+"class": "Thirst",
+"language": "GDScript",
+"path": "res://scripts/stats/thirst.gd"
+} ]
+_global_script_class_icons={
+"Health": "",
+"Hunger": "",
+"Inventory": "",
+"Stat": "",
+"Thirst": ""
+}
+
 [application]
 
 config/name="Tinker"
