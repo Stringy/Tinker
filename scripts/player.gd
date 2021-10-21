@@ -5,6 +5,7 @@ export (int) var speed = 200
 var hunger = preload("res://resources/player/hunger.tres")
 var thirst = preload("res://resources/player/thirst.tres")
 var health = preload("res://resources/player/health.tres")
+var inventory = preload("res://resources/player/inventory.tres")
 
 var target = self.position
 var velocity = Vector2()
@@ -83,7 +84,7 @@ func deplete_hunger():
 		self.take_damage(self, 1)
 	else:
 		var percent_moved = clamp(self.moved_frames, 0, 100)
-		self.hunger.deplete(percent_moved * 0.02)
+		self.hunger.deplete(percent_moved * 0.002)
 		emit_signal("hunger_changed", self.hunger.get_value())
 		
 func deplete_thirst():

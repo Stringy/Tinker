@@ -1,9 +1,10 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://scripts/items/item.gd" type="Script" id=1]
+[ext_resource path="res://scripts/items/food.gd" type="Script" id=1]
 [ext_resource path="res://sprites/items/food.sprites/food-50.tres" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
 name = "Chicken Leg"
 texture = ExtResource( 2 )
+calories = 10.0
