@@ -1,0 +1,978 @@
+{
+	"textures": [
+		{
+			"image": "food.png",
+			"size": {
+				"w": 376,
+				"h": 54
+			},
+			"sprites": [
+				{
+					"filename": "food-10.png",
+					"region": {
+						"x": 1,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-11.png",
+					"region": {
+						"x": 19,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-12.png",
+					"region": {
+						"x": 37,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-13.png",
+					"region": {
+						"x": 55,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-14.png",
+					"region": {
+						"x": 73,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-17.png",
+					"region": {
+						"x": 91,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-2.png",
+					"region": {
+						"x": 109,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-20.png",
+					"region": {
+						"x": 127,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-21.png",
+					"region": {
+						"x": 145,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-24.png",
+					"region": {
+						"x": 163,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-25.png",
+					"region": {
+						"x": 181,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-26.png",
+					"region": {
+						"x": 199,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-33.png",
+					"region": {
+						"x": 217,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-34.png",
+					"region": {
+						"x": 235,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-35.png",
+					"region": {
+						"x": 253,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-36.png",
+					"region": {
+						"x": 271,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-39.png",
+					"region": {
+						"x": 289,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-40.png",
+					"region": {
+						"x": 307,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-41.png",
+					"region": {
+						"x": 325,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-42.png",
+					"region": {
+						"x": 343,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-30.png",
+					"region": {
+						"x": 361,
+						"y": 1,
+						"w": 14,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 2,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-44.png",
+					"region": {
+						"x": 1,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-46.png",
+					"region": {
+						"x": 19,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-47.png",
+					"region": {
+						"x": 37,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-48.png",
+					"region": {
+						"x": 55,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-49.png",
+					"region": {
+						"x": 73,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-50.png",
+					"region": {
+						"x": 91,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-53.png",
+					"region": {
+						"x": 109,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-54.png",
+					"region": {
+						"x": 127,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-55.png",
+					"region": {
+						"x": 145,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-56.png",
+					"region": {
+						"x": 163,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-58.png",
+					"region": {
+						"x": 181,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-59.png",
+					"region": {
+						"x": 199,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-60.png",
+					"region": {
+						"x": 217,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-61.png",
+					"region": {
+						"x": 235,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-63.png",
+					"region": {
+						"x": 253,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-8.png",
+					"region": {
+						"x": 271,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-9.png",
+					"region": {
+						"x": 289,
+						"y": 19,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-0.png",
+					"region": {
+						"x": 307,
+						"y": 19,
+						"w": 16,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 1,
+						"w": 0,
+						"h": 1
+					}
+				},
+				{
+					"filename": "food-1.png",
+					"region": {
+						"x": 325,
+						"y": 19,
+						"w": 16,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 1,
+						"w": 0,
+						"h": 1
+					}
+				},
+				{
+					"filename": "food-28.png",
+					"region": {
+						"x": 343,
+						"y": 19,
+						"w": 15,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 1,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-29.png",
+					"region": {
+						"x": 360,
+						"y": 19,
+						"w": 15,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 1,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-15.png",
+					"region": {
+						"x": 307,
+						"y": 36,
+						"w": 16,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 1,
+						"w": 0,
+						"h": 1
+					}
+				},
+				{
+					"filename": "food-3.png",
+					"region": {
+						"x": 325,
+						"y": 36,
+						"w": 15,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 1,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-19.png",
+					"region": {
+						"x": 342,
+						"y": 37,
+						"w": 16,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 1,
+						"w": 0,
+						"h": 1
+					}
+				},
+				{
+					"filename": "food-31.png",
+					"region": {
+						"x": 360,
+						"y": 37,
+						"w": 15,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 1,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-32.png",
+					"region": {
+						"x": 1,
+						"y": 37,
+						"w": 16,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 1,
+						"w": 0,
+						"h": 1
+					}
+				},
+				{
+					"filename": "food-38.png",
+					"region": {
+						"x": 19,
+						"y": 37,
+						"w": 16,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 1,
+						"w": 0,
+						"h": 1
+					}
+				},
+				{
+					"filename": "food-45.png",
+					"region": {
+						"x": 37,
+						"y": 37,
+						"w": 16,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 1,
+						"w": 0,
+						"h": 1
+					}
+				},
+				{
+					"filename": "food-5.png",
+					"region": {
+						"x": 55,
+						"y": 37,
+						"w": 16,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 1
+					}
+				},
+				{
+					"filename": "food-62.png",
+					"region": {
+						"x": 73,
+						"y": 37,
+						"w": 16,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 1,
+						"w": 0,
+						"h": 1
+					}
+				},
+				{
+					"filename": "food-16.png",
+					"region": {
+						"x": 91,
+						"y": 37,
+						"w": 16,
+						"h": 14
+					},
+					"margin": {
+						"x": 0,
+						"y": 2,
+						"w": 0,
+						"h": 2
+					}
+				},
+				{
+					"filename": "food-23.png",
+					"region": {
+						"x": 109,
+						"y": 37,
+						"w": 16,
+						"h": 14
+					},
+					"margin": {
+						"x": 0,
+						"y": 2,
+						"w": 0,
+						"h": 2
+					}
+				},
+				{
+					"filename": "food-37.png",
+					"region": {
+						"x": 127,
+						"y": 37,
+						"w": 16,
+						"h": 14
+					},
+					"margin": {
+						"x": 0,
+						"y": 2,
+						"w": 0,
+						"h": 2
+					}
+				},
+				{
+					"filename": "food-52.png",
+					"region": {
+						"x": 145,
+						"y": 37,
+						"w": 16,
+						"h": 14
+					},
+					"margin": {
+						"x": 0,
+						"y": 2,
+						"w": 0,
+						"h": 2
+					}
+				},
+				{
+					"filename": "food-57.png",
+					"region": {
+						"x": 163,
+						"y": 37,
+						"w": 16,
+						"h": 13
+					},
+					"margin": {
+						"x": 0,
+						"y": 3,
+						"w": 0,
+						"h": 3
+					}
+				},
+				{
+					"filename": "food-51.png",
+					"region": {
+						"x": 181,
+						"y": 37,
+						"w": 15,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 1,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-43.png",
+					"region": {
+						"x": 198,
+						"y": 37,
+						"w": 15,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 1,
+						"w": 1,
+						"h": 1
+					}
+				},
+				{
+					"filename": "food-6.png",
+					"region": {
+						"x": 215,
+						"y": 37,
+						"w": 15,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 1,
+						"w": 1,
+						"h": 1
+					}
+				},
+				{
+					"filename": "food-7.png",
+					"region": {
+						"x": 232,
+						"y": 37,
+						"w": 15,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 1,
+						"w": 1,
+						"h": 1
+					}
+				},
+				{
+					"filename": "food-4.png",
+					"region": {
+						"x": 249,
+						"y": 37,
+						"w": 14,
+						"h": 16
+					},
+					"margin": {
+						"x": 1,
+						"y": 0,
+						"w": 2,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-18.png",
+					"region": {
+						"x": 265,
+						"y": 37,
+						"w": 12,
+						"h": 16
+					},
+					"margin": {
+						"x": 1,
+						"y": 0,
+						"w": 4,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-22.png",
+					"region": {
+						"x": 279,
+						"y": 37,
+						"w": 12,
+						"h": 16
+					},
+					"margin": {
+						"x": 2,
+						"y": 0,
+						"w": 4,
+						"h": 0
+					}
+				},
+				{
+					"filename": "food-27.png",
+					"region": {
+						"x": 293,
+						"y": 37,
+						"w": 12,
+						"h": 16
+					},
+					"margin": {
+						"x": 2,
+						"y": 0,
+						"w": 4,
+						"h": 0
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:0270116fd326b99891efff7c83ceb9af:ede500593dfca6b08a9dfe441db27351:ff2db7a3694fab26b6e6955a1ded8f48$"
+	}
+}
