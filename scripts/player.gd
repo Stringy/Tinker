@@ -43,10 +43,6 @@ func _process(delta: float):
 	self.velocity = direction * self.speed * delta
 	self.position += self.velocity
 	emit_signal("moved", self.position)
-
-func _input(event: InputEvent):
-	if event.is_action_pressed("click"):
-		self.target = self.get_global_mouse_position()
 		
 func get_animation_direction(direction: Vector2):
 	var norm_direction = direction.normalized()
