@@ -12,10 +12,13 @@ signal value_changed(new_value, difference)
 func set_value(new_value: float):
 	last_change = new_value - value
 	value = clamp(new_value, value_min, value_max)
-	emit_signal("value_changed", new_value, last_change)
+	emit_signal("value_changed", value, last_change)
 
 func reduce_value(amount: float):
 	self.set_value(self.value - amount)
+	
+func increase_value(amount: float):
+	self.set_value(self.value + amount)
 	
 func get_value() -> float:
 	return value
