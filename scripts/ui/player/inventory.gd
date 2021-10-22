@@ -4,8 +4,6 @@ var inventory = preload("res://resources/player/inventory.tres")
 
 onready var slots = $SlotContainer
 
-var selected_slot = 0
-
 func _ready():
 	inventory.connect("item_added", self, "add_item")
 	inventory.connect("item_removed", self, "remove_item")
@@ -16,14 +14,14 @@ func _ready():
 		var item = inventory.get_item(i)
 		slot.display(item)
 		
-	slots.get_child(selected_slot).toggle_selected()
+	slots.get_child(self.inventory.get_selected_slot()).toggle_selected()
 	
 func _input(event):
 	for i in 10:
 		if event.is_action_pressed("select_hotbar_" + str(i + 1)):
-			slots.get_child(selected_slot).toggle_selected()
+			slots.get_child(self.inventory.get_selected_slot()).toggle_selected()
 			slots.get_child(i).toggle_selected()
-			selected_slot = i
+			self.inventory.set_selected_slot(i)
 			break
 	
 func add_item(idx):
