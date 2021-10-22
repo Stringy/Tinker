@@ -57,7 +57,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Tinker"
-run/main_scene="res://scenes/terrain_test.tscn"
+run/main_scene="res://scenes/game.tscn"
 config/icon="res://icon.png"
 
 [editor_plugins]
@@ -171,6 +171,8 @@ select_hotbar_10={
 [physics]
 
 common/enable_pause_aware_picking=true
+2d/default_gravity=0
+2d/default_gravity_vector=Vector2( 0, 0 )
 
 [rendering]
 

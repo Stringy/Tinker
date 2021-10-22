@@ -21,7 +21,7 @@ signal thirst_changed(new_thirst)
 func _ready():
 	pass
 	
-func _process(delta: float):
+func _physics_process(delta: float):
 	var direction = Vector2()
 	if Input.is_action_pressed("forward"):
 		direction.y -= 1.0
@@ -42,8 +42,9 @@ func _process(delta: float):
 	moved_frames = clamp(moved_frames, 0, 100)
 		
 	self.velocity = direction * self.speed * delta
-	self.position += self.velocity
+	self.position += velocity
 	emit_signal("moved", self.position)
+		
 		
 func get_animation_direction(direction: Vector2):
 	var norm_direction = direction.normalized()
@@ -101,8 +102,17 @@ func take_damage(_source, amount):
 		emit_signal("died")
 	else:
 		emit_signal("health_changed", self.health.get_value())
-		
 
 func update_stats():
 	self.deplete_hunger()
 	self.deplete_thirst()
+	
+func get_inventory() -> Inventory:
+	return self.inventory
+
+func try_use_item(_position):
+	var item: Item = self.inventory.get_selected_item()
+	if item:
+		item.use(self)
+		if item.consumable():
+			self.inventory.remove_selected_item()

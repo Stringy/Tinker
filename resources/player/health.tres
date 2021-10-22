@@ -5,3 +5,5 @@
 [resource]
 script = ExtResource( 1 )
 value = 100.0
+value_max = 100.0
+value_min = 0.0
