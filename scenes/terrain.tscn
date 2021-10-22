@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://scripts/terrain.gd" type="Script" id=1]
+[ext_resource path="res://scripts/world/terrain.gd" type="Script" id=1]
 [ext_resource path="res://tiles/grass_tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://scripts/ground.gd" type="Script" id=3]
+[ext_resource path="res://scripts/world/ground.gd" type="Script" id=3]
 [ext_resource path="res://tiles/tiles.png" type="Texture" id=4]
-[ext_resource path="res://scripts/terrain_objects.gd" type="Script" id=5]
+[ext_resource path="res://scripts/world/terrain_objects.gd" type="Script" id=5]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 seed = 256

@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Inventory",
 "language": "GDScript",
-"path": "res://scripts/inventory.gd"
+"path": "res://scripts/resources/inventory.gd"
 }, {
 "base": "Resource",
 "class": "Item",

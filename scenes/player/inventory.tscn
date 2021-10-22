@@ -1,0 +1,92 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/player/inventory_slot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/ui/player/inventory.gd" type="Script" id=2]
+
+[node name="PlayerInventory" type="CenterContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="SlotContainer" type="HBoxContainer" parent="."]
+margin_left = 314.0
+margin_right = 670.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PlayerInvSlot" parent="SlotContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 32.0
+margin_bottom = 32.0
+
+[node name="PlayerInvSlot2" parent="SlotContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 32.0
+
+[node name="PlayerInvSlot3" parent="SlotContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 72.0
+margin_right = 104.0
+margin_bottom = 32.0
+
+[node name="PlayerInvSlot4" parent="SlotContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 108.0
+margin_right = 140.0
+margin_bottom = 32.0
+
+[node name="PlayerInvSlot5" parent="SlotContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 144.0
+margin_right = 176.0
+margin_bottom = 32.0
+
+[node name="PlayerInvSlot6" parent="SlotContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 180.0
+margin_right = 212.0
+margin_bottom = 32.0
+
+[node name="PlayerInvSlot7" parent="SlotContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 216.0
+margin_right = 248.0
+margin_bottom = 32.0
+
+[node name="PlayerInvSlot8" parent="SlotContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 284.0
+margin_bottom = 32.0
+
+[node name="PlayerInvSlot9" parent="SlotContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 288.0
+margin_right = 320.0
+margin_bottom = 32.0
+
+[node name="PlayerInvSlot10" parent="SlotContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 324.0
+margin_right = 356.0
+margin_bottom = 32.0
