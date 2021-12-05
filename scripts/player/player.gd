@@ -40,29 +40,17 @@ func _physics_process(delta: float):
 		moved_frames -= 1
 	
 	moved_frames = clamp(moved_frames, 0, 100)
-		
-	self.velocity = direction * self.speed * delta
-	self.position += velocity
+	
+	self.move_and_slide(direction * self.speed)
+#	self.velocity = direction * self.speed * delta
+#	self.position += velocity
 	emit_signal("moved", self.position)
-		
-		
-func get_animation_direction(direction: Vector2):
-	var norm_direction = direction.normalized()
-	if norm_direction.y >= 0.707:
-		return "down"
-	elif norm_direction.y <= -0.707:
-		return "up"
-	elif norm_direction.x <= -0.707:
-		return "left"
-	elif norm_direction.x >= 0.707:
-		return "right"
-	return "down"
 	
 func animate_player(direction: Vector2):
 	var flip_x = false
 	if direction != Vector2.ZERO:
 		last_direction = direction
-		var animation = get_animation_direction(last_direction)
+		var animation = Utils.get_animation_direction(last_direction)
 		flip_x = animation == "right"
 		if animation == "left" or animation == "right":
 			animation = "side"
@@ -71,7 +59,7 @@ func animate_player(direction: Vector2):
 		$Sprite.frames.set_animation_speed(animation, 2 + 8 * direction.length())
 		$Sprite.play(animation)
 	else:
-		var animation = get_animation_direction(last_direction)
+		var animation = Utils.get_animation_direction(last_direction)
 		flip_x = animation == "right"
 		if animation == "left" or animation == "right":
 			animation = "side"

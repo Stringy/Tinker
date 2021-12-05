@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Controller",
+"language": "GDScript",
+"path": "res://scripts/controllers/controller.gd"
+}, {
 "base": "Item",
 "class": "Food",
 "language": "GDScript",
@@ -45,6 +50,7 @@ _global_script_classes=[ {
 "path": "res://scripts/stats/thirst.gd"
 } ]
 _global_script_class_icons={
+"Controller": "",
 "Food": "",
 "Health": "",
 "Hunger": "",
@@ -59,6 +65,10 @@ _global_script_class_icons={
 config/name="Tinker"
 run/main_scene="res://scenes/game.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Utils="*res://scripts/utils.gd"
 
 [editor_plugins]
 
