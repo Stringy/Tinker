@@ -57,20 +57,9 @@ func _resolve_animation(name):
 	return kind.to_lower() + "_" + name
 	
 func _next_state():
-	var eating = randf() * state_weights[State.Eating]
-	var sitting = randf() * state_weights[State.Sitting]
-	
+	var adjusted_weights = Utils.copy(state_weights)
 	if self.state == State.Sitting:
 		# if sitting, give a bit more weight to continue sitting
 		# but not so much as to prevent the chicken from moving again
-		sitting = randf() * state_weights[State.Sitting] * 5
-	
-	var walking = randf() * state_weights[State.Walking]
-	
-	var biggest = max(walking, max(eating, sitting))
-	if biggest == eating:
-		return State.Eating
-	elif biggest == sitting:
-		return State.Sitting
-	else:
-		return State.Walking
+		adjusted_weights[State.Sitting] = state_weights[State.Sitting] * 6
+	return Utils.weighted_result(state_weights)

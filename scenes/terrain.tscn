@@ -7,14 +7,14 @@
 [ext_resource path="res://scripts/world/terrain_objects.gd" type="Script" id=5]
 
 [sub_resource type="OpenSimplexNoise" id=1]
-seed = -19458977
+seed = -1251454170
 octaves = 1
 period = 1.0
 persistence = 0.75
 lacunarity = 1.5
 
 [sub_resource type="OpenSimplexNoise" id=2]
-seed = -911137827
+seed = -802433859
 octaves = 1
 period = 1.0
 persistence = 0.75

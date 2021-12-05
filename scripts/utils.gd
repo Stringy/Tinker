@@ -14,3 +14,35 @@ func get_animation_direction(direction: Vector2):
 	
 func should_update(last_update: float, interval: float):
 	return OS.get_ticks_msec() - (interval * 1000) >= last_update
+
+func weighted_result(weights: Dictionary) -> float:
+	var max_key
+	var max_value = 0.0
+	for key in weights.keys():
+		var result = randf() * weights[key]
+		if result > max_value:
+			max_key = key
+			max_value = result
+	return max_key
+	
+func copy(value):
+	var type = typeof(value)
+	
+	if type == TYPE_DICTIONARY:
+		var other = {}
+		for key in value:
+			other[key] = value[key]
+		return other
+	
+	if type == TYPE_ARRAY:
+		var other = []
+		other.resize(len(value))
+		for i in range(len(value)):
+			other[i] = copy(value[i])
+		return other
+	
+	# otherwise uncopyable (maybe?)
+	return value
+	
+	
+	
