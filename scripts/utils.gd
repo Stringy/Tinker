@@ -28,20 +28,15 @@ func weighted_result(weights: Dictionary) -> float:
 func copy(value):
 	var type = typeof(value)
 	
+	if type == TYPE_OBJECT and value.has_method('duplicate'):
+		return value.duplicate(true)
+	
 	if type == TYPE_DICTIONARY:
-		var other = {}
-		for key in value:
-			other[key] = value[key]
-		return other
+		return value.duplicate(true)
 	
 	if type == TYPE_ARRAY:
-		var other = []
-		other.resize(len(value))
-		for i in range(len(value)):
-			other[i] = copy(value[i])
-		return other
-	
-	# otherwise uncopyable (maybe?)
+		return value.duplicate(true)
+		
 	return value
 	
 	

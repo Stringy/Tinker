@@ -37,7 +37,6 @@ func _process(delta):
 	if Utils.should_update(last_state_update, update_seconds):
 		self.state = _next_state()
 		last_state_update = OS.get_ticks_msec()
-		print(State.keys()[self.state])
 		
 	if self.state == State.Eating:
 		sprites.play(_resolve_animation("peck"))
