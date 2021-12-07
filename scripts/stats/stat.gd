@@ -5,7 +5,7 @@ export (float) var value = 100.0 setget set_value, get_value
 export (float) var value_max = 100.0
 export (float) var value_min = 0.0
 
-var last_change: float = 0.0
+var last_change: float = 0.0 setget , get_last_change
 
 signal value_changed(new_value, difference)
 

@@ -15,3 +15,5 @@
 - Livestock, including moving them around with the group.
 
 - Detail. Like DF & Project Zomboid. Maybe not quite that detailed. But detailed.
+
+- Probably need to learn 2D art. Make some of my own resources. 

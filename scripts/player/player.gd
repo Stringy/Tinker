@@ -11,6 +11,7 @@ var target = self.position
 var velocity = Vector2()
 var last_direction = Vector2(0, 1)
 var moved_frames = 0
+var attacking = false
 
 signal moved(position)
 signal died
@@ -18,10 +19,18 @@ signal health_changed(new_health)
 signal hunger_changed(new_hunger)
 signal thirst_changed(new_thirst)
 
+onready var sprites = $Sprite
+
 func _ready():
-	pass
+	sprites.connect("animation_finished", self, "stop_attacking")
+	
+func stop_attacking():
+	self.attacking = false
 	
 func _physics_process(delta: float):
+	if attacking:
+		return 
+	
 	var direction = Vector2()
 	if Input.is_action_pressed("forward"):
 		direction.y -= 1.0
@@ -31,7 +40,7 @@ func _physics_process(delta: float):
 		direction.x -= 1.0
 	if Input.is_action_pressed("right"):
 		direction.x += 1.0
-		
+
 	animate_player(direction)
 	
 	if direction.length() > 0:
@@ -56,15 +65,15 @@ func animate_player(direction: Vector2):
 			animation = "side"
 			
 		animation = animation + "_walk"
-		$Sprite.frames.set_animation_speed(animation, 2 + 8 * direction.length())
-		$Sprite.play(animation)
+		sprites.frames.set_animation_speed(animation, 2 + 8 * direction.length())
+		sprites.play(animation)
 	else:
 		var animation = Utils.get_animation_direction(last_direction)
 		flip_x = animation == "right"
 		if animation == "left" or animation == "right":
 			animation = "side"
 		animation = animation + "_idle"
-		$Sprite.play(animation)
+		sprites.play(animation)
 	
 	$Sprite.flip_h = flip_x
 	
@@ -104,3 +113,10 @@ func try_use_item(_position):
 		item.use(self)
 		if item.consumable():
 			self.inventory.remove_selected_item()
+	else:
+		var animation = Utils.get_animation_direction(self.last_direction)
+		if animation == "left" or animation == "right":
+			animation = "side"
+		animation = animation + "_attack"
+		self.attacking = true
+		sprites.play(animation)

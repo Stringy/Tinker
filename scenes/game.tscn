@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/ui/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://scenes/terrain.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/ui/debug.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/game.gd" type="Script" id=6]
-[ext_resource path="res://scenes/item.tscn" type="PackedScene" id=7]
 
 [node name="Root" type="Node"]
 script = ExtResource( 6 )
@@ -22,10 +21,43 @@ z_index = 1
 [node name="Debug" parent="." instance=ExtResource( 5 )]
 
 [node name="Chicken" parent="." instance=ExtResource( 3 )]
-position = Vector2( 395.483, 356.784 )
+position = Vector2( 439.62, 367.658 )
+chicken_kind = 0
 
-[node name="Item" parent="." instance=ExtResource( 7 )]
-position = Vector2( 305.758, 267.143 )
+[node name="Chicken8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 568.831, 336.315 )
+
+[node name="Chicken9" parent="." instance=ExtResource( 3 )]
+position = Vector2( 643.032, 381.731 )
+
+[node name="Chicken10" parent="." instance=ExtResource( 3 )]
+position = Vector2( 540.686, 224.374 )
+
+[node name="Chicken11" parent="." instance=ExtResource( 3 )]
+position = Vector2( 621.923, 272.349 )
+chicken_kind = 0
+
+[node name="Chicken12" parent="." instance=ExtResource( 3 )]
+position = Vector2( 788.235, 280.664 )
+
+[node name="Chicken2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 300.173, 356.784 )
+
+[node name="Chicken3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 454.332, 265.952 )
+
+[node name="Chicken4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 521.496, 356.144 )
+
+[node name="Chicken5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 427.466, 209.022 )
+chicken_kind = 0
+
+[node name="Chicken6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 382.05, 290.259 )
+
+[node name="Chicken7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 373.735, 176.399 )
 
 [connection signal="died" from="Player" to="." method="game_over"]
 [connection signal="moved" from="Player" to="Terrain" method="_generate_world"]

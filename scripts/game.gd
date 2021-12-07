@@ -26,5 +26,4 @@ func spawn_dropped_item(item: Item):
 	if player.last_direction == Vector2(0, -1):
 		increment = Vector2(50, 50)
 	item_inst.position = player.position + Vector2(0, 25) + (increment * player.last_direction)
-	print(item_inst.position)
 	self.add_child(item_inst)
