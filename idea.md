@@ -17,3 +17,14 @@
 - Detail. Like DF & Project Zomboid. Maybe not quite that detailed. But detailed.
 
 - Probably need to learn 2D art. Make some of my own resources. 
+
+- NPCs
+    - As part of the family/group
+        - with their own agendas 
+        - intelligent but uncontrollable 
+    - Enemies
+        - enemy groups, doing the same thing as the player's group
+    - Friendly
+        - Small villages / settlements
+        - Wandering traders
+        - friendly groups, doing the same thing as the player's group
