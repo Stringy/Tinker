@@ -51,31 +51,15 @@ func _physics_process(delta: float):
 	moved_frames = clamp(moved_frames, 0, 100)
 	
 	self.move_and_slide(direction * self.speed)
-#	self.velocity = direction * self.speed * delta
-#	self.position += velocity
 	emit_signal("moved", self.position)
 	
 func animate_player(direction: Vector2):
-	var flip_x = false
 	if direction != Vector2.ZERO:
 		last_direction = direction
-		var animation = Utils.get_animation_direction(last_direction)
-		flip_x = animation == "right"
-		if animation == "left" or animation == "right":
-			animation = "side"
-			
-		animation = animation + "_walk"
+		var animation = sprites.animate_direction(last_direction, "walk")
 		sprites.frames.set_animation_speed(animation, 2 + 8 * direction.length())
-		sprites.play(animation)
 	else:
-		var animation = Utils.get_animation_direction(last_direction)
-		flip_x = animation == "right"
-		if animation == "left" or animation == "right":
-			animation = "side"
-		animation = animation + "_idle"
-		sprites.play(animation)
-	
-	$Sprite.flip_h = flip_x
+		sprites.animate_direction(last_direction, "idle")
 	
 func deplete_hunger():
 	if self.hunger.get_value() <= 0:
@@ -114,9 +98,5 @@ func try_use_item(_position):
 		if item.consumable():
 			self.inventory.remove_selected_item()
 	else:
-		var animation = Utils.get_animation_direction(self.last_direction)
-		if animation == "left" or animation == "right":
-			animation = "side"
-		animation = animation + "_attack"
 		self.attacking = true
-		sprites.play(animation)
+		sprites.animate_direction(self.last_direction, "attack")
