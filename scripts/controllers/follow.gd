@@ -24,6 +24,6 @@ func get_target() -> Vector2:
     var tv = leader.get_velocity() * -1
     return leader.global_position + (tv.normalized() * distance_behind)
 
-func calculate_movement():
+func calculate_movement() -> Vector2:
     var behind = get_target()
     return arrive(behind)
