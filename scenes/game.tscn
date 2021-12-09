@@ -23,7 +23,6 @@ z_index = 1
 [node name="Chicken" parent="." instance=ExtResource( 3 )]
 position = Vector2( 439.62, 367.658 )
 chicken_kind = 0
-follow = NodePath("../Player")
 
 [connection signal="died" from="Player" to="." method="game_over"]
 [connection signal="moved" from="Player" to="Terrain" method="_generate_world"]

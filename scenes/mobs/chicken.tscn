@@ -3,7 +3,7 @@
 [ext_resource path="res://sprites/chicken_white.png" type="Texture" id=1]
 [ext_resource path="res://sprites/chicken_light_brown.png" type="Texture" id=2]
 [ext_resource path="res://scripts/mobs/chicken.gd" type="Script" id=3]
-[ext_resource path="res://scripts/controllers/follow.gd" type="Script" id=4]
+[ext_resource path="res://scripts/controllers/wander.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -224,4 +224,3 @@ frame = 2
 
 [node name="Controller" type="Node2D" parent="."]
 script = ExtResource( 4 )
-speed = 40.0
