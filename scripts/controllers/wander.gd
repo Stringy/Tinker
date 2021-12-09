@@ -10,7 +10,7 @@ export (float) var angle_change = 0.5;
 
 func _ready():
 	randomize()
-	self.direction = set_angle(self.direction, randf()).normalized() * self.speed
+	self.velocity = set_angle(self.velocity, randf()).normalized() * self.speed
 
 func set_angle(vector: Vector2, angle: float):
 	var length = vector.length()
@@ -19,7 +19,7 @@ func set_angle(vector: Vector2, angle: float):
 	return vector
 	
 func _wander():
-	var circle = self.direction.normalized() * ring_distance
+	var circle = self.velocity.normalized() * ring_distance
 	var displacement = Vector2(0, -1) * ring_radius
 	displacement = set_angle(displacement, wanderAngle)
 	wanderAngle += (randf() * angle_change) - (angle_change * 0.5)
@@ -27,6 +27,6 @@ func _wander():
 
 func calculate_movement():
 	if OS.get_ticks_msec() - (wanderSeconds * 1000) < last_update:
-		return self.direction
-	self.direction = self._wander().normalized() * self.speed
-	return self.direction
+		return self.velocity
+	self.velocity = self._wander().normalized() * self.speed
+	return self.velocity

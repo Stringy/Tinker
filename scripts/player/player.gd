@@ -8,8 +8,7 @@ var health = preload("res://resources/player/health.tres")
 var inventory = preload("res://resources/player/inventory.tres")
 
 var target = self.position
-var velocity = Vector2()
-var last_direction = Vector2(0, 1)
+var velocity = Vector2(0, 0) setget, get_velocity
 var moved_frames = 0
 var attacking = false
 
@@ -27,7 +26,10 @@ func _ready():
 func stop_attacking():
 	self.attacking = false
 	
-func _physics_process(delta: float):
+func get_velocity():
+	return velocity
+
+func _physics_process(_delta: float):
 	if attacking:
 		return 
 	
@@ -53,13 +55,13 @@ func _physics_process(delta: float):
 	self.move_and_slide(direction * self.speed)
 	emit_signal("moved", self.position)
 	
-func animate_player(direction: Vector2):
-	if direction != Vector2.ZERO:
-		last_direction = direction
-		var animation = sprites.animate_direction(last_direction, "walk")
-		sprites.frames.set_animation_speed(animation, 2 + 8 * direction.length())
+func animate_player(new_velocity: Vector2):
+	if new_velocity != Vector2.ZERO:
+		self.velocity = new_velocity
+		var animation = sprites.animate_direction(self.velocity, "walk")
+		sprites.frames.set_animation_speed(animation, 2 + 8 * new_velocity.length())
 	else:
-		sprites.animate_direction(last_direction, "idle")
+		sprites.animate_direction(self.velocity, "idle")
 	
 func deplete_hunger():
 	if self.hunger.get_value() <= 0:
@@ -99,4 +101,4 @@ func try_use_item(_position):
 			self.inventory.remove_selected_item()
 	else:
 		self.attacking = true
-		sprites.animate_direction(self.last_direction, "attack")
+		sprites.animate_direction(self.velocity, "attack")

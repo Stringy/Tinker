@@ -16,6 +16,7 @@ enum State {
 
 export (Kind) var chicken_kind
 export (float) var update_seconds_base = 1.0;
+export (NodePath) var follow
 
 var state = State.Walking
 var last_state_update = OS.get_ticks_msec()
@@ -28,7 +29,8 @@ var state_weights = {
 func _ready():
 	sprites.play(_resolve_animation("run"))
 	state = _next_state()
-	
+	$Controller.leaderPath = "../" + follow
+
 func _init():
 	randomize()
 	
@@ -38,18 +40,18 @@ func _process(delta):
 		self.state = _next_state()
 		last_state_update = OS.get_ticks_msec()
 		
-	if self.state == State.Eating:
-		sprites.play(_resolve_animation("peck"))
-	elif self.state == State.Sitting:
-		sprites.play(_resolve_animation("sit"))
+#	if self.state == State.Eating:
+#		sprites.play(_resolve_animation("peck"))
+#	elif self.state == State.Sitting:
+#		sprites.play(_resolve_animation("sit"))
+#	else:
+	sprites.play(_resolve_animation("run"))
+	var velocity = controller.calculate_movement()
+	if Utils.get_animation_direction(velocity) == "right":
+		sprites.flip_h = true
 	else:
-		sprites.play(_resolve_animation("run"))
-		var direction = controller.calculate_movement()
-		if Utils.get_animation_direction(direction) == "right":
-			sprites.flip_h = true
-		else:
-			sprites.flip_h = false
-		self.move_and_slide(direction)
+		sprites.flip_h = false
+	self.move_and_slide(velocity)
 	
 func _resolve_animation(name):
 	var kind = Kind.keys()[chicken_kind]
