@@ -15,6 +15,7 @@ enum State {
 }
 
 export (Kind) var chicken_kind
+export (bool) var randomize_kind = true
 export (float) var update_seconds_base = 1.0;
 
 var state = State.Walking
@@ -26,6 +27,9 @@ var state_weights = {
 }
 
 func _ready():
+    if randomize_kind:
+        chicken_kind = Kind.get(Kind.keys()[randi() % Kind.keys().size()])
+    
     sprites.play(_resolve_animation("run"))
     state = _next_state()
 
