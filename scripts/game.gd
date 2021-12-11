@@ -1,7 +1,8 @@
 extends Node
 
+onready var ysort = $YSort
 onready var ui_container = $GUI/Container
-onready var player = $Player
+onready var player = $YSort/Player
 onready var terrain = $Terrain
 
 var item_scene = preload("res://scenes/item.tscn")
@@ -9,7 +10,7 @@ var item_scene = preload("res://scenes/item.tscn")
 var npc_scene = preload("res://scenes/npc.tscn")
 
 func _ready():
-    terrain._generate_world($Player.position)
+    terrain._generate_world(player .position)
     ui_container.connect("item_dropped", self, "spawn_dropped_item")
     ui_container.connect("canvas_clicked", player, "try_use_item")
  

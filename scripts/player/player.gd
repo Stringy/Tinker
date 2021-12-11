@@ -2,10 +2,10 @@ extends KinematicBody2D
 
 export (int) var speed = 200
 
-var hunger = preload("res://resources/player/hunger.tres")
-var thirst = preload("res://resources/player/thirst.tres")
-var health = preload("res://resources/player/health.tres")
-var inventory = preload("res://resources/player/inventory.tres")
+export (Resource) var hunger
+export (Resource) var thirst
+export (Resource) var health
+export (Resource) var inventory
 
 var target = self.position
 var velocity = Vector2(0, 0) setget, get_velocity
@@ -106,11 +106,6 @@ func try_use_item(_position):
 func try_attack():
     self.attacking = true
     sprites.animate_direction(self.velocity, "attack")
-
-
-func on_melee_attack(area):
-    print("area entered: ", area)
-
 
 func _on_Melee_body_entered(body: Node):
     if body.get("health") != null and body.health is Health:

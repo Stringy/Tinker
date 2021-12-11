@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scripts/player/player.gd" type="Script" id=1]
+[ext_resource path="res://resources/player/hunger.tres" type="Resource" id=2]
 [ext_resource path="res://sprites/player/_down idle.png" type="Texture" id=3]
 [ext_resource path="res://sprites/player/_down walk.png" type="Texture" id=4]
 [ext_resource path="res://sprites/player/_down attack.png" type="Texture" id=5]
@@ -11,6 +12,9 @@
 [ext_resource path="res://sprites/player/_up walk.png" type="Texture" id=10]
 [ext_resource path="res://scripts/directional_sprite.gd" type="Script" id=11]
 [ext_resource path="res://sprites/player/_up attack.png" type="Texture" id=12]
+[ext_resource path="res://resources/player/thirst.tres" type="Resource" id=13]
+[ext_resource path="res://resources/player/health.tres" type="Resource" id=14]
+[ext_resource path="res://resources/player/inventory.tres" type="Resource" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.2645, 6.77451 )
@@ -1036,14 +1040,16 @@ tracks/5/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 7.30164, 11.082 )
+extents = Vector2( 10.1542, 6.93422 )
 
-[node name="Player" type="KinematicBody2D" groups=[
-"players",
-]]
+[node name="Player" type="KinematicBody2D" groups=["family", "players"]]
 position = Vector2( 482.071, 294.049 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
+hunger = ExtResource( 2 )
+thirst = ExtResource( 13 )
+health = ExtResource( 14 )
+inventory = ExtResource( 15 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 8.25 )
@@ -1074,14 +1080,14 @@ anims/up_walk = SubResource( 11 )
 script = ExtResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 10 )
-hframes = 4
+texture = ExtResource( 5 )
+hframes = 2
 vframes = 2
 
 [node name="Melee" type="Area2D" parent="Sprite"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Melee"]
-position = Vector2( -20.2186, 0.63533 )
+position = Vector2( 0.0301971, 17.6343 )
 shape = SubResource( 2 )
 disabled = true
 
