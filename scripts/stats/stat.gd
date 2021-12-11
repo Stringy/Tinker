@@ -8,11 +8,15 @@ export (float) var value_min = 0.0
 var last_change: float = 0.0 setget , get_last_change
 
 signal value_changed(new_value, difference)
+signal value_zero()
 
 func set_value(new_value: float):
     last_change = new_value - value
     value = clamp(new_value, value_min, value_max)
     emit_signal("value_changed", value, last_change)
+    
+    if value == 0:
+        emit_signal("value_zero")
 
 func reduce_value(amount: float):
     self.set_value(self.value - amount)

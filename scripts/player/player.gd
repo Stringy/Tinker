@@ -18,12 +18,12 @@ signal health_changed(new_health)
 signal hunger_changed(new_hunger)
 signal thirst_changed(new_thirst)
 
-onready var sprites = $Sprite
+onready var sprites = $AnimationPlayer
 
 func _ready():
     sprites.connect("animation_finished", self, "stop_attacking")
     
-func stop_attacking():
+func stop_attacking(_name):
     self.attacking = false
     
 func get_velocity():
@@ -59,7 +59,8 @@ func animate_player(new_velocity: Vector2):
     if new_velocity != Vector2.ZERO:
         self.velocity = new_velocity
         var animation = sprites.animate_direction(self.velocity, "walk")
-        sprites.frames.set_animation_speed(animation, 2 + 8 * new_velocity.length())
+        sprites.set_speed_scale(1.5)
+        # sprites.frames.set_animation_speed(animation, 2 + 8 * new_velocity.length())
     else:
         sprites.animate_direction(self.velocity, "idle")
     
@@ -100,5 +101,17 @@ func try_use_item(_position):
         if item.consumable():
             self.inventory.remove_selected_item()
     else:
-        self.attacking = true
-        sprites.animate_direction(self.velocity, "attack")
+        self.try_attack()
+
+func try_attack():
+    self.attacking = true
+    sprites.animate_direction(self.velocity, "attack")
+
+
+func on_melee_attack(area):
+    print("area entered: ", area)
+
+
+func _on_Melee_body_entered(body: Node):
+    if body.get("health") != null and body.health is Health:
+        body.health.reduce_value(100)

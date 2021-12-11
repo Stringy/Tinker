@@ -18,6 +18,11 @@ export (Kind) var chicken_kind
 export (bool) var randomize_kind = true
 export (float) var update_seconds_base = 1.0;
 
+var health = Health.new()
+
+var chicken_drop = preload("res://resources/items/chicken_leg.tres")
+var item = preload("res://scenes/item.tscn")
+
 var state = State.Walking
 var last_state_update = OS.get_ticks_msec()
 var state_weights = {
@@ -32,6 +37,21 @@ func _ready():
     
     sprites.play(_resolve_animation("run"))
     state = _next_state()
+    
+    health.connect("value_zero", self, "die")
+    
+func die():
+    var new_item = item.instance()
+    new_item.item = chicken_drop.duplicate()
+    new_item.position = self.position + Vector2(randi() % 50, randi() % 50)
+    get_parent().add_child(new_item)
+    
+    new_item = item.instance()
+    new_item.item = chicken_drop.duplicate()
+    new_item.position = self.position + Vector2(randi() % 50, randi() % 50)
+    get_parent().add_child(new_item)
+    
+    queue_free()
 
 func _init():
     randomize()
