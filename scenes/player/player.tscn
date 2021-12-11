@@ -4,7 +4,7 @@
 [ext_resource path="res://resources/player/sprites.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://scripts/directional_sprite.gd" type="Script" id=11]
 
-[sub_resource type="RectangleShape2D" id=47]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.2645, 6.77451 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -22,7 +22,7 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 8.25 )
-shape = SubResource( 47 )
+shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

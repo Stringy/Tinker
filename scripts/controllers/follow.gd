@@ -7,7 +7,6 @@ export (float) var stopping_distance = 75.0
 export (float) var separation_distance = 75.0
 export (float) var max_separation = 50.0
 
-# onready var leader = get_node(leaderPath)
 
 func distance(other: Node) -> float:
     return self.global_position.distance_to(other.global_position)
@@ -52,7 +51,12 @@ func arrive(target: Vector2):
     
 func get_target() -> Vector2:
     var leader = get_node(leaderPath)
-    var tv = leader.get_velocity() * -1
+    if not leader:
+        return Vector2.ZERO
+    
+    var tv = Vector2.ZERO
+    if leader.has_method('get_velocity'):
+        tv = leader.get_velocity() * -1
     return leader.global_position + (tv.normalized() * distance_behind)
 
 func calculate_movement() -> Vector2:
