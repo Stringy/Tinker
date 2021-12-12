@@ -8,9 +8,14 @@ onready var player = $YSort/Player
 onready var terrain = $Terrain
 onready var main_camera = $YSort/Player/MainCamera
 
-var item_scene = preload("res://scenes/item.tscn")
+var item_scene = preload("res://scenes/item.tscn") 
+var chicken_scene = preload("res://scenes/mobs/chicken.tscn")
+
+var random = RandomNumberGenerator.new()
 
 func _ready():
+    randomize()
+    random.seed = randi()
     terrain._generate_world(player.position)
     ui_container.connect("item_dropped", self, "spawn_dropped_item")
     ui_container.connect("canvas_clicked", player, "try_use_item")
@@ -21,6 +26,28 @@ func _process(_delta):
 
     if Input.is_action_just_pressed("ui_select"):
         self.swap_player()
+
+    if randf() < 0.05:
+        var chicken = chicken_scene.instance()
+        chicken.controller = Wander.new()
+
+        var view = get_viewport().get_visible_rect().size
+        var x = random.randf_range(-view.x, view.x)
+        var y = random.randf_range(-view.y, view.y)
+
+        if x < 0:
+            x -= view.x
+        else:
+            x += view.x
+        
+        if y < 0:
+            y -= view.y
+        else:
+            y += view.y
+
+        chicken.position = player.position + Vector2(x, y)
+
+        $YSort.add_child(chicken)
 
 func swap_player():
     var family = get_tree().get_nodes_in_group("family")
