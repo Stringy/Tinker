@@ -1,10 +1,18 @@
 extends Control
 
-var hunger = preload("res://resources/player/hunger.tres")
-var thirst = preload("res://resources/player/thirst.tres")
-var health = preload("res://resources/player/health.tres")
+var hunger: Hunger
+var thirst: Thirst
+var health: Health 
 
 func _ready():
+	var player = Utils.get_player()
+
+	var stats = player.get_node("Person/Stats")
+
+	hunger = stats.hunger
+	thirst = stats.thirst
+	health = stats.health
+
 	hunger.connect("value_changed", self, "set_hunger")
 	thirst.connect("value_changed", self, "set_thirst")
 	health.connect("value_changed", self, "set_health")

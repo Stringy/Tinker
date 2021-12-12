@@ -1,4 +1,5 @@
 extends Controller
+class_name Follow
 
 export (NodePath) var leaderPath
 export (float) var distance_behind = 75.0
@@ -14,8 +15,10 @@ func distance(other: Node) -> float:
 func separation():
     var neighbours = 0
     var force = Vector2()
-    
-    var others = get_tree().get_nodes_in_group(leaderPath)
+
+    var tree = self.get_local_scene().get_tree()
+
+    var others = tree.get_nodes_in_group(leaderPath)
     for other in others:
         if other != self and distance(other) <= separation_distance:
             force += Vector2(
@@ -50,7 +53,7 @@ func arrive(target: Vector2):
     return force
     
 func get_target() -> Vector2:
-    var leader = get_node(leaderPath)
+    var leader = self.get_local_scene().get_node(leaderPath)
     if not leader:
         return Vector2.ZERO
     

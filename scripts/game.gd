@@ -10,7 +10,7 @@ var item_scene = preload("res://scenes/item.tscn")
 var npc_scene = preload("res://scenes/npc.tscn")
 
 func _ready():
-    terrain._generate_world(player .position)
+    terrain._generate_world(player.position)
     ui_container.connect("item_dropped", self, "spawn_dropped_item")
     ui_container.connect("canvas_clicked", player, "try_use_item")
  

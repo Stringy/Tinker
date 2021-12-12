@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 onready var sprites = $Sprites
-onready var controller = $Controller
 
 enum Kind {
     white,
@@ -14,6 +13,7 @@ enum State {
     Eating,
 }
 
+export (Resource) var controller
 export (Kind) var chicken_kind
 export (bool) var randomize_kind = true
 export (float) var update_seconds_base = 1.0;

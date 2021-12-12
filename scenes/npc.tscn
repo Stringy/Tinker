@@ -1,8 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://scripts/controllers/wander.gd" type="Script" id=1]
 [ext_resource path="res://resources/player/sprites.tres" type="SpriteFrames" id=2]
-[ext_resource path="res://scripts/controllers/follow.gd" type="Script" id=3]
 [ext_resource path="res://scripts/npc.gd" type="Script" id=4]
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+speed = 20.0
+enabled = false
+wanderSeconds = 0.2
+ring_distance = 150.0
+ring_radius = 50.0
+angle_change = 0.5
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.33188, 4.76389 )
@@ -12,6 +21,7 @@ position = Vector2( 114.273, 64.4084 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 4 )
 speed = 100.0
+controller = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.173141, 12.1199 )
@@ -20,7 +30,3 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 2 )
 animation = "down_idle"
-
-[node name="Controller" type="Node2D" parent="."]
-script = ExtResource( 3 )
-speed = 150.0

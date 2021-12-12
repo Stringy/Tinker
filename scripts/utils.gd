@@ -39,5 +39,11 @@ func copy(value):
         
     return value
     
-    
-    
+#
+# Gets the current player (only member of the players group)
+# TODO(eventually): multiplayer?
+#
+func get_player():
+    var players = get_tree().get_nodes_in_group("players")
+    assert(len(players) == 1)
+    return players[0]

@@ -1,4 +1,5 @@
 extends Controller
+class_name Wander
 
 var wanderAngle = 0.0
 var last_update = OS.get_ticks_msec()
@@ -8,7 +9,7 @@ export (float) var ring_distance = 150;
 export (float) var ring_radius = 50;
 export (float) var angle_change = 0.5;
 
-func _ready():
+func _init():
     randomize()
     self.velocity = set_angle(self.velocity, randf()).normalized() * self.speed
 
@@ -26,6 +27,8 @@ func _wander():
     return circle + displacement
 
 func calculate_movement():
+    if not self.enabled:
+        return Vector2.ZERO
     if OS.get_ticks_msec() - (wanderSeconds * 1000) < last_update:
         return self.velocity
     self.velocity = self._wander().normalized() * self.speed

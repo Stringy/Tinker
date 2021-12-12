@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/controllers/follow.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+speed = 20.0
+enabled = true
+leaderPath = NodePath("")
+distance_behind = 75.0
+slowing_radius = 40.0
+stopping_distance = 75.0
+separation_distance = 75.0
+max_separation = 50.0

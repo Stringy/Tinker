@@ -8,6 +8,10 @@ var selected = false
 
 onready var texture = $Texture
 
+func _ready():
+    var player = Utils.get_player()
+    inventory = player.get_inventory()
+
 func display(item: Item):
     if item != null:
         texture.texture = item.texture

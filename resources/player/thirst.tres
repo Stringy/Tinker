@@ -9,3 +9,4 @@ value_max = 100.0
 value_min = 0.0
 initial_value = 100.0
 base_depletion_value = 0.05
+addition_scale = 0.002

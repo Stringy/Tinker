@@ -1,10 +1,14 @@
 extends CenterContainer
 
-var inventory = preload("res://resources/player/inventory.tres")
+var inventory: Inventory
 
 onready var slots = $SlotContainer
 
 func _ready():
+    var players = get_tree().get_nodes_in_group("players")
+    assert(len(players) == 1)
+    inventory = players[0].get_inventory()
+
     inventory.connect("item_added", self, "add_item")
     inventory.connect("item_removed", self, "remove_item")
     inventory.connect("item_swapped", self, "swap_items")

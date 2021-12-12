@@ -1,20 +1,15 @@
 extends KinematicBody2D
 
 export (float) var speed = 175
-export (NodePath) var leader
+export (Resource) var controller
 
-onready var controller = $Controller
 onready var sprites = $AnimatedSprite
-
-var wander = preload("res://scripts/controllers/wander.gd")
-var follow = preload("res://scripts/controllers/follow.gd")
 
 # store the old velocity so we don't end up looking down
 # when we stop.
 var old_velocity = Vector2()
 
 func _ready():
-    controller.set_script(wander)
     controller.speed = speed
     
 func get_velocity():
