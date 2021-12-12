@@ -1,10 +1,15 @@
 extends Node2D
 
-export (Resource) var health: Resource
-export (Resource) var hunger: Resource
-export (Resource) var thirst: Resource
+var health: Health
+var hunger: Hunger
+var thirst: Thirst
 
 signal stat_changed(stat)
+
+func _init():
+    self.health = Health.new()
+    self.hunger = Hunger.new()
+    self.thirst = Thirst.new()
 
 func update_stats(move_percentage: float):
     self.deplete_hunger(move_percentage)

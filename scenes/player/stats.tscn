@@ -9,7 +9,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Stats" type="HBoxContainer" parent="."]
+[node name="Stats" type="HBoxContainer" parent="." groups=["player_observer"]]
 margin_left = 488.0
 margin_right = 496.0
 margin_bottom = 14.0

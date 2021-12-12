@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/player/inventory_slot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/ui/player/inventory.gd" type="Script" id=2]
 
-[node name="PlayerInventory" type="CenterContainer"]
+[node name="PlayerInventory" type="CenterContainer" groups=["player_observer"]]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0

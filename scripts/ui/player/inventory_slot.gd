@@ -17,7 +17,7 @@ func display(item: Item):
         texture.texture = item.texture
     else:
         texture.texture = null
-        
+
 func toggle_selected():
     selected = !selected
     if selected:
