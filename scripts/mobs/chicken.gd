@@ -31,7 +31,14 @@ var state_weights = {
     State.Walking: 0.5
 }
 
+var flash_timer = Timer.new()
+
 func _ready():
+    flash_timer.one_shot = true
+    flash_timer.connect("timeout", self, "_on_flash_timeout")
+
+    add_child(flash_timer)
+
     if randomize_kind:
         chicken_kind = Kind.get(Kind.keys()[randi() % Kind.keys().size()])
     
@@ -74,6 +81,14 @@ func _process(delta):
         else:
             sprites.flip_h = false
         self.move_and_slide(velocity)
+
+func hit(damage: float):
+    flash()
+    self.health.reduce_value(damage)
+
+func flash():
+    sprites.material.set_shader_param("flash_modifier", 0.75)
+    flash_timer.start(0.2)
     
 func _resolve_animation(name):
     var kind = Kind.keys()[chicken_kind]
@@ -86,3 +101,7 @@ func _next_state():
         # but not so much as to prevent the chicken from moving again
         adjusted_weights[State.Sitting] = state_weights[State.Sitting] * 6
     return Utils.weighted_result(state_weights)
+
+func _on_flash_timeout():
+    sprites.material.set_shader_param("flash_modifier", 0.0)
+    print("flash timeout")
