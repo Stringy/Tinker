@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/items/item.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Mob",
+"language": "GDScript",
+"path": "res://scripts/mobs/mob.gd"
+}, {
 "base": "Resource",
 "class": "Stat",
 "language": "GDScript",
@@ -73,6 +78,7 @@ _global_script_class_icons={
 "Hunger": "",
 "Inventory": "",
 "Item": "",
+"Mob": "",
 "Stat": "",
 "Thirst": "",
 "Wander": ""

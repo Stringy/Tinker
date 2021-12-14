@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Mob
 
 onready var sprites = $Sprites
 
@@ -18,8 +18,6 @@ export (Kind) var chicken_kind
 export (bool) var randomize_kind = true
 export (float) var update_seconds_base = 1.0;
 
-var health = Health.new()
-
 var chicken_drop = preload("res://resources/items/chicken_leg.tres")
 var item = preload("res://scenes/item.tscn")
 
@@ -34,6 +32,7 @@ var state_weights = {
 var flash_timer = Timer.new()
 
 func _ready():
+    ._ready()
     flash_timer.one_shot = true
     flash_timer.connect("timeout", self, "_on_flash_timeout")
 
@@ -48,6 +47,7 @@ func _ready():
     health.connect("value_zero", self, "die")
     
 func die():
+    .die()
     var new_item = item.instance()
     new_item.item = chicken_drop.duplicate()
     new_item.position = self.position + Vector2(randi() % 50, randi() % 50)
@@ -83,12 +83,12 @@ func _process(delta):
         self.move_and_slide(velocity)
 
 func hit(damage: float):
+    .hit(damage)
     flash()
-    self.health.reduce_value(damage)
 
 func flash():
-    sprites.material.set_shader_param("flash_modifier", 0.75)
-    flash_timer.start(0.2)
+    sprites.material.set_shader_param("flash_modifier", 0.9)
+    flash_timer.start(0.15)
     
 func _resolve_animation(name):
     var kind = Kind.keys()[chicken_kind]
@@ -104,4 +104,3 @@ func _next_state():
 
 func _on_flash_timeout():
     sprites.material.set_shader_param("flash_modifier", 0.0)
-    print("flash timeout")

@@ -4,6 +4,7 @@
 [ext_resource path="res://sprites/chicken_light_brown.png" type="Texture" id=2]
 [ext_resource path="res://scripts/mobs/chicken.gd" type="Script" id=3]
 [ext_resource path="res://scripts/controllers/wander.gd" type="Script" id=4]
+[ext_resource path="res://shaders/flash.gdshader" type="Shader" id=5]
 
 [sub_resource type="Resource" id=35]
 script = ExtResource( 4 )
@@ -16,21 +17,9 @@ angle_change = 0.5
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[sub_resource type="Shader" id=36]
-code = "shader_type canvas_item;
-
-uniform vec4 flash_colour: hint_color = vec4(1.0);
-uniform float flash_modifier: hint_range(0.0, 1.0) = 1;
-
-void fragment() {
-    vec4 colour = texture(TEXTURE, UV);
-    colour.rgb = mix(colour.rgb, flash_colour.rgb, flash_modifier);
-    COLOR = colour;
-}
-"
-
 [sub_resource type="ShaderMaterial" id=37]
-shader = SubResource( 36 )
+resource_local_to_scene = true
+shader = ExtResource( 5 )
 shader_param/flash_colour = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 

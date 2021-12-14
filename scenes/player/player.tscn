@@ -1072,9 +1072,10 @@ anims/up_walk = SubResource( 16 )
 script = ExtResource( 15 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 14 )
-hframes = 2
+texture = ExtResource( 6 )
+hframes = 4
 vframes = 2
+frame = 3
 
 [node name="Melee" type="Area2D" parent="Sprite"]
 
