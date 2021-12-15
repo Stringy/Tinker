@@ -40,7 +40,6 @@ chicken_kind = 0
 
 [node name="Player" parent="YSort" groups=["players"] instance=ExtResource( 8 )]
 position = Vector2( 481.071, 294.049 )
-speed = 200.0
 is_player = true
 inventory = SubResource( 1 )
 
@@ -51,8 +50,6 @@ smoothing_speed = 2.0
 
 [node name="NPC" parent="YSort" instance=ExtResource( 8 )]
 position = Vector2( 276.735, 168.871 )
-speed = 200.0
-is_player = false
 inventory = SubResource( 2 )
 
 [node name="GUI" parent="." instance=ExtResource( 1 )]

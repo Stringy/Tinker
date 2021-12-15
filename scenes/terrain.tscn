@@ -2,19 +2,19 @@
 
 [ext_resource path="res://scripts/world/terrain.gd" type="Script" id=1]
 [ext_resource path="res://tiles/grass_tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://scripts/world/ground.gd" type="Script" id=3]
+[ext_resource path="res://scripts/native/world/ground.gdns" type="Script" id=3]
 [ext_resource path="res://tiles/tiles.png" type="Texture" id=4]
-[ext_resource path="res://scripts/world/terrain_objects.gd" type="Script" id=5]
+[ext_resource path="res://scripts/native/world/terrain_objects.gdns" type="Script" id=5]
 
 [sub_resource type="OpenSimplexNoise" id=1]
-seed = 37347268
+seed = 590983247
 octaves = 1
 period = 1.0
 persistence = 0.75
 lacunarity = 1.5
 
 [sub_resource type="OpenSimplexNoise" id=2]
-seed = 528851906
+seed = -611930256
 octaves = 1
 period = 1.0
 persistence = 0.75
