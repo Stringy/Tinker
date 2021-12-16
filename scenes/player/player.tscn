@@ -1075,7 +1075,6 @@ script = ExtResource( 15 )
 texture = ExtResource( 6 )
 hframes = 4
 vframes = 2
-frame = 3
 
 [node name="Melee" type="Area2D" parent="Sprite"]
 

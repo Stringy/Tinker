@@ -11,3 +11,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 gdnative = { git = "https://github.com/godot-rust/godot-rust.git" }
+num = "0.4.0"
