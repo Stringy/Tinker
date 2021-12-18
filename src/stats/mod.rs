@@ -1,22 +1,25 @@
 use gdnative::prelude::*;
 use gdnative::api::Resource;
 
-#[derive(NativeClass, Default)]
+pub enum StatKind {
+    Health,
+    Thirst,
+    Hunger,
+}
+
+#[derive(NativeClass)]
 #[inherit(Resource)]
+#[no_constructor]
 pub struct Stat {
+    kind: StatKind,
     value: f64,
     max: f64,
     min: f64,
 }
 
 #[methods]
-impl Stat {
-    pub fn new(owner: &Resource) -> Self {
-        Default::default()
-    }
-}
+impl Stat {}
 
-#[derive(Default)]
 pub struct Stats {
     health: Stat,
     thirst: Stat,
@@ -25,7 +28,26 @@ pub struct Stats {
 
 impl Stats {
     pub fn new() -> Self {
-        Default::default()
+        Stats {
+            health: Stat {
+                kind: StatKind::Health,
+                value: 100.0,
+                max: 100.0,
+                min: 100.0,
+            },
+            thirst: Stat {
+                kind: StatKind::Thirst,
+                value: 100.0,
+                max: 100.0,
+                min: 100.0,
+            },
+            hunger: Stat {
+                kind: StatKind::Hunger,
+                value: 100.0,
+                max: 100.0,
+                min: 100.0,
+            },
+        }
     }
     pub fn update(&mut self, delta: f32) {}
 }

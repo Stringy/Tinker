@@ -7,6 +7,7 @@ pub mod terrain;
 pub mod player;
 pub mod utils;
 pub mod stats;
+pub mod inventory;
 
 fn init(handle: InitHandle) {
     terrain::init(&handle);

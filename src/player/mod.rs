@@ -1,3 +1,4 @@
+use std::borrow::Borrow;
 use std::f64::consts::FRAC_PI_4;
 use std::ops::Mul;
 use gdnative::prelude::*;
@@ -6,14 +7,19 @@ use gdnative::api::Input;
 
 use crate::utils::DirectionalSprite;
 use crate::stats::Stats;
+use crate::inventory::Inventory;
 
 #[derive(NativeClass)]
 #[inherit(KinematicBody2D)]
+#[register_with(Self::register)]
 pub struct Player {
     velocity: Vector2,
     frames_moved: f32,
     attacking: bool,
     stats: Stats,
+
+    #[property]
+    inventory: Option<Instance<Inventory>>,
 
     #[property(default = 200.0)]
     speed: f32,
@@ -29,12 +35,13 @@ impl Player {
             frames_moved: 0.0,
             attacking: false,
             stats: Stats::new(),
+            inventory: None,
             speed: 200.0,
             is_player: false,
         }
     }
 
-    pub fn register_signals(builder: &ClassBuilder<Self>) {
+    pub fn register(builder: &ClassBuilder<Self>) {
         builder.add_signal(Signal {
             name: "stat_changed",
             args: &[],
@@ -58,6 +65,7 @@ impl Player {
 
     #[export]
     pub fn _physics_process(&mut self, owner: &KinematicBody2D, _delta: f64) {
+        godot_print!("_physics_process");
         let direction = if self.is_player {
             let input = Input::godot_singleton();
             let mut direction = Vector2::ZERO;
@@ -80,6 +88,10 @@ impl Player {
         };
 
         self.do_move(owner, direction);
+    }
+
+    pub fn get_inventory(&self, _owner: &KinematicBody2D) -> Option<&Instance<Inventory>> {
+        return self.inventory.as_ref();
     }
 }
 

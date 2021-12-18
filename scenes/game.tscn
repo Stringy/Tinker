@@ -40,8 +40,8 @@ chicken_kind = 0
 
 [node name="Player" parent="YSort" groups=["players"] instance=ExtResource( 8 )]
 position = Vector2( 481.071, 294.049 )
-is_player = true
 inventory = SubResource( 1 )
+is_player = true
 
 [node name="MainCamera" type="Camera2D" parent="YSort/Player"]
 current = true
