@@ -28,8 +28,11 @@ func _ready():
     ground_noise.seed = randi()
     object_noise.seed = randi()
 
-    top_left = self.position - (self.size / 2) + self.border
-    bounds = Rect2(top_left, self.size - (self.border * 2))
+    self.top_left = self.position - (self.size / 2) + self.border
+    print(self.size)
+    print(self.border)
+    print(self.size - (self.border * 2))
+    self.bounds = Rect2(top_left, self.size - (self.border * 2))
     $Ground.generate(ground_noise, self.position, self.size)
     $Objects.generate(object_noise, self.position, self.size)
 
@@ -45,6 +48,7 @@ func _generate_world(position: Vector2):
     #
     var center = $Ground.world_to_map(position)
     if not self.bounds.has_point(center):
+        print("Generating at ", position, " ", center, " bounds ", self.bounds)
         $Ground.generate(ground_noise, position, self.size)
         $Objects.generate(object_noise, position, self.size)
         top_left = center - (self.size / 2) + self.border
