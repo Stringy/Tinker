@@ -43,9 +43,7 @@ func _ready():
     
     sprites.play(_resolve_animation("run"))
     state = _next_state()
-    
-    health.connect("value_zero", self, "die")
-    
+
 func die():
     .die()
     var new_item = item.instance()
