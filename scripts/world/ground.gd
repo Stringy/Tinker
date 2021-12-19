@@ -8,24 +8,30 @@ var TILES = {
     'grass_v3': 3
 }
 
-func generate(noise, position, size):
-    position = self.world_to_map(position)
+func generate(region: Rect2, biome: Biome):
+    self.tile_set = biome.tile_set
 
-    var x_coord = position.x - (size.x / 2)
-    var y_coord = position.y - (size.y / 2)
+    print(region.position)
+    print(region.size)
 
-    for y in size.y:
-        for x in size.x:
+    var position = self.world_to_map(region.position)
+
+    var x_coord = position.x - (region.size.x / 2)
+    var y_coord = position.y - (region.size.y / 2)
+
+    for y in region.size.y:
+        for x in region.size.x:
             self.set_cellv(
                 Vector2(x_coord + x, y_coord + y),
-                _get_tile_index(noise.get_noise_2d(float(x_coord + x), float(y_coord + y)))
+                _get_tile_index(biome.noise.get_noise_2d(float(x_coord + x), float(y_coord + y)), biome)
             )
 
-func _get_tile_index(sample):
+func _get_tile_index(sample: float, biome: Biome):
+    var ids = biome.tile_set.get_tiles_ids()
     if sample < -0.3:
-        return TILES.grass
+        return ids[0]
     if sample < -0.1:
-        return TILES.grass_v1
+        return ids[1]
     if sample < 0.3:
-        return TILES.grass_v2
-    return TILES.grass_v3
+        return ids[2]
+    return ids[3]

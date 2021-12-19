@@ -1,5 +1,5 @@
 tool
-extends Node2D
+extends WorldGenerator
 
 #
 #var ground_noise
@@ -24,14 +24,18 @@ var top_left
 var bounds = Rect2()
 
 func _ready():
-    randomize()
-    ground_noise.seed = randi()
-    object_noise.seed = randi()
+    pass
+    # randomize()
+    # ground_noise.seed = randi()
+    # object_noise.seed = randi()
 
-    self.top_left = self.position - (self.size / 2) + self.border
-    self.bounds = Rect2(top_left, self.size - (self.border * 2))
-    $Ground.generate(ground_noise, self.position, self.size)
-    $Objects.generate(object_noise, self.position, self.size)
+    # self.top_left = self.position - (self.size / 2) + self.border
+    # self.bounds = Rect2(top_left, self.size - (self.border * 2))
+    # $Ground.generate(ground_noise, self.position, self.size)
+    # $Objects.generate(object_noise, self.position, self.size)
+
+func generate(region: Rect2, biome: Biome):
+    $Ground.generate(region, biome)
 
 func _generate_world(position: Vector2):
     #
