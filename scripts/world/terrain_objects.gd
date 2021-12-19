@@ -40,6 +40,4 @@ func _get_tile_index(sample):
         return TILES.long_grass_2
     if sample < -0.4:
         return TILES.long_grass_3
-    if sample < -0.35:
-        return TREES[randi() % len(TREES)]
     return TILES.empty
