@@ -15,12 +15,13 @@ func generate(region: Rect2, biome: Biome):
     print(region.size)
 
     var position = self.world_to_map(region.position)
+    var size = self.world_to_map(region.size)
 
-    var x_coord = position.x - (region.size.x / 2)
-    var y_coord = position.y - (region.size.y / 2)
+    var x_coord = position.x - (size.x / 2)
+    var y_coord = position.y - (size.y / 2)
 
-    for y in region.size.y:
-        for x in region.size.x:
+    for y in size.y:
+        for x in size.x:
             self.set_cellv(
                 Vector2(x_coord + x, y_coord + y),
                 _get_tile_index(biome.noise.get_noise_2d(float(x_coord + x), float(y_coord + y)), biome)

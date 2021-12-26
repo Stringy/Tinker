@@ -56,3 +56,6 @@ func _generate_world(position: Vector2):
 
 func world_to_map(position: Vector2):
     return $Ground.world_to_map(position)
+
+func map_to_world(position: Vector2):
+    return $Ground.map_to_world(position)

@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 onready var world = $World
 onready var ui_container = $GUI/Container
@@ -35,16 +35,16 @@ func _ready():
     ui_container.connect("canvas_clicked", player, "try_use_item")
 
 func region_around_player() -> Rect2:
-    var top_left = terrain.world_to_map(player.position - (self.world_size / 2) + self.generation_border)
-    return Rect2(top_left, self.world_size)
+    var top_left = player.position - (self.world_size / 2) + self.generation_border
+    return Rect2(top_left, terrain.map_to_world(self.world_size))
 
 func generate_world(position: Vector2):
     var center = terrain.world_to_map(position)
     if not self.bounds.has_point(center):
         var region = self.region_around_player()
         terrain.generate(region, plains_biome)
-        objects.generate(region, plains_biome)
-        self.bounds = Rect2(region.position, self.world_size - (self.generation_border * 2))
+        # objects.generate(region, plains_biome)
+        self.bounds = Rect2(region.position, terrain.map_to_world(self.world_size - (self.generation_border * 2)))
 
 func _process(_delta):
     if $Debug.is_active():
@@ -112,3 +112,7 @@ func spawn_dropped_item(item: Item):
         increment = Vector2(50, 50)
     item_inst.position = player.position + Vector2(0, 25) + (increment * player.last_direction)
     self.add_child(item_inst)
+
+
+func _draw():
+    draw_rect(self.region_around_player(), Color.white, false, 10, true)
