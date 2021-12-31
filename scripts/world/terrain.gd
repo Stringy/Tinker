@@ -75,6 +75,7 @@ class Region:
     var biome: Biome
     var tiles: Array = []
     var trees: Array = []
+    var grass: Array = []
 
     func _to_string():
         return "Region(" + str(self.transform) + ")"
@@ -97,6 +98,9 @@ func _generate_region(job: Rect2) -> Region:
             
             if biome.should_place_tree(x_coord, y_coord):
                 region.trees.push_back(Vector2(x_coord, y_coord))
+            elif biome.should_place_grass(x_coord, y_coord):
+                region.grass.push_back(Vector2(x_coord, y_coord))
+                
         region.tiles.push_back(row)
 
     return region

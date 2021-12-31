@@ -30,7 +30,6 @@ script = ExtResource( 2 )
 size = 10
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 512, 512 )
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 6 )
@@ -68,6 +67,8 @@ script = ExtResource( 9 )
 
 [node name="Trees" type="YSort" parent="World/Objects"]
 
+[node name="Grass" type="YSort" parent="World/Objects"]
+
 [node name="GUI" parent="." instance=ExtResource( 1 )]
 
 [node name="Debug" parent="." instance=ExtResource( 5 )]
@@ -77,5 +78,6 @@ script = ExtResource( 9 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TerrainBounds"]
 shape = SubResource( 4 )
 
+[connection signal="area_exited" from="World/Player/CullingRange" to="World/Objects" method="_on_CullingRange_area_exited"]
 [connection signal="body_exited" from="World/Player/CullingRange" to="World/Objects" method="_on_CullingRange_body_exited"]
 [connection signal="body_exited" from="TerrainBounds" to="." method="_on_body_exit_region"]

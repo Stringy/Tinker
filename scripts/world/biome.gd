@@ -19,3 +19,7 @@ func get_tile_idx(x: float, y: float) -> int:
     
 func should_place_tree(x: float, y: float) -> bool:
     return self.noise.get_noise_2d(x, y) < self.tree_weight
+
+func should_place_grass(x: float, y: float) -> bool:
+    return self.noise.get_noise_2d(x, y) < -0.2
+    

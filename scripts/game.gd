@@ -31,9 +31,9 @@ func _ready():
     chunks.push_back(self.region_around_player())
     TerrainGenerator.queue_generation(self.region_around_player())
 
-    culling_area.shape.extents = Utils.map_to_world(self.world_size) / 2
+    culling_area.shape.extents = Utils.map_to_world(self.world_size) / 4
     generation_shape.shape.extents = Utils.map_to_world(self.world_size) / 4
-
+    
     ui_container.connect("item_dropped", self, "spawn_dropped_item")
     ui_container.connect("canvas_clicked", player, "try_use_item")
 
