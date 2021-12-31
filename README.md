@@ -19,13 +19,16 @@ travel the world, following their pacifist lifestyle "The Way of the Leaf"
 - NPCs, other wandering nomads, or villages. Hostile or friendly.
 
 ### The Story So Far
+31/12/2021 - overhauled terrain generation, including trees and grass. Proprerly infinite. Probably
 
+![Terrain](.doc/tree_terrain.gif)
+
+<details>
+ <summary>Old GIFs</summary>
 5/12/2021 - chickens, hunger, thirst, health, animations etc etc
 
 ![Chickens](.doc/chickens.gif)
 
-<details>
- <summary>Old GIFs</summary>
 15/10/2021 - infinite flat world generation. It's not that efficient, but it works.
 
 ![First Gif](.doc/simple_terrain.gif)
