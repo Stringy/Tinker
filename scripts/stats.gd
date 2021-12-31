@@ -32,6 +32,6 @@ func deplete_thirst(move_percentage: float):
 func deplete_health(reduction: float):
     self.health.reduce_value(reduction)
     if self.health.get_value() <= 0:
-        emit_signal("no_health")
+        pass
     else:
         emit_signal("stat_changed", self.health)

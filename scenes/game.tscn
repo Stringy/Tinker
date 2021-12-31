@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/ui/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/resources/inventory.gd" type="Script" id=2]
@@ -22,6 +22,8 @@ angle_change = 0.5
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
 size = 10
+
+[sub_resource type="RectangleShape2D" id=5]
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
@@ -52,6 +54,11 @@ current = true
 smoothing_enabled = true
 smoothing_speed = 2.0
 
+[node name="CullingRange" type="Area2D" parent="World/Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Player/CullingRange"]
+shape = SubResource( 5 )
+
 [node name="NPC" parent="World" instance=ExtResource( 8 )]
 position = Vector2( 276.735, 168.871 )
 inventory = SubResource( 2 )
@@ -70,4 +77,5 @@ script = ExtResource( 9 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TerrainBounds"]
 shape = SubResource( 4 )
 
+[connection signal="body_exited" from="World/Player/CullingRange" to="World/Objects" method="_on_CullingRange_body_exited"]
 [connection signal="body_exited" from="TerrainBounds" to="." method="_on_body_exit_region"]

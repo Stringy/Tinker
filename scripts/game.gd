@@ -11,6 +11,7 @@ onready var objects = $World/Objects
 onready var main_camera = $World/Player/MainCamera
 onready var generation_area = $TerrainBounds
 onready var generation_shape = $TerrainBounds/CollisionShape2D
+onready var culling_area = $World/Player/CullingRange/CollisionShape2D
 
 export (Vector2) var world_size = Vector2(128, 128)
 
@@ -29,6 +30,9 @@ func _ready():
     
     chunks.push_back(self.region_around_player())
     TerrainGenerator.queue_generation(self.region_around_player())
+
+    culling_area.shape.extents = Utils.map_to_world(self.world_size) / 2
+    generation_shape.shape.extents = Utils.map_to_world(self.world_size) / 4
 
     ui_container.connect("item_dropped", self, "spawn_dropped_item")
     ui_container.connect("canvas_clicked", player, "try_use_item")
