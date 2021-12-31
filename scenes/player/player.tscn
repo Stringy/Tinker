@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scripts/player/player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/player/_up idle.png" type="Texture" id=4]
@@ -12,6 +12,21 @@
 [ext_resource path="res://scripts/stats.gd" type="Script" id=13]
 [ext_resource path="res://sprites/player/_down attack.png" type="Texture" id=14]
 [ext_resource path="res://scripts/directional_sprite.gd" type="Script" id=15]
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Melee/CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.0301971, 4.71624 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "down_attack"
@@ -84,10 +99,10 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.00130325 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.0301971, 17.6343 ) ]
+"values": [ Vector2( -0.0811615, 4.15945 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Sprite/Melee/CollisionShape2D:disabled")
@@ -1033,11 +1048,11 @@ tracks/5/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4, 4.88725 )
-
 [sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 10.1542, 6.93422 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 4.88725 )
 
 [node name="Actor" type="KinematicBody2D" groups=["family"]]
 position = Vector2( 482.071, 294.049 )
@@ -1053,6 +1068,7 @@ script = ExtResource( 13 )
 [node name="Skills" type="Node2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 18 )
 anims/down_attack = SubResource( 5 )
 anims/down_idle = SubResource( 6 )
 anims/down_walk = SubResource( 7 )
@@ -1067,22 +1083,22 @@ anims/up_idle = SubResource( 15 )
 anims/up_walk = SubResource( 16 )
 script = ExtResource( 15 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.464493, 11.8627 )
-shape = SubResource( 1 )
-
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 6 )
+offset = Vector2( 0, -16 )
 hframes = 4
 vframes = 2
-frame = 3
 
 [node name="Melee" type="Area2D" parent="Sprite"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Melee"]
-position = Vector2( 0.0301971, 17.6343 )
+position = Vector2( 0.0301971, 4.71624 )
 shape = SubResource( 17 )
 disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.019043, -5.06441 )
+shape = SubResource( 1 )
 
 [connection signal="timeout" from="StatsTimer" to="." method="_on_stats_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]

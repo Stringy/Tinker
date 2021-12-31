@@ -6,6 +6,7 @@ onready var ui_inventory = $GUI/Container/PlayerBlock/Player/PlayerInventory
 onready var ui_stats = $GUI/Container/PlayerBlock/Player/PlayerStats
 onready var player = $World/Player
 onready var map = $Terrain
+onready var ground = $Terrain/Ground
 onready var objects = $World/Objects
 onready var main_camera = $World/Player/MainCamera
 onready var generation_area = $TerrainBounds
@@ -46,8 +47,8 @@ func _process(_delta):
     for i in len(self.chunks):
         var region = TerrainGenerator.get_generated_region(self.chunks[i])
         if region:
-            $Terrain/Ground.update_terrain(region)
-            objects.update_terrain(region)
+            ground.call_deferred("update_terrain", region)
+            objects.call_deferred("update_terrain", region)
             self.chunks.remove(i)
 
 func swap_player():
