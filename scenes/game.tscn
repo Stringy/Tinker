@@ -43,7 +43,7 @@ controller = SubResource( 3 )
 chicken_kind = 0
 
 [node name="Player" parent="World" groups=["players"] instance=ExtResource( 8 )]
-position = Vector2( 481.071, 294.049 )
+position = Vector2( 1.85098, -1.97552 )
 is_player = true
 inventory = SubResource( 1 )
 

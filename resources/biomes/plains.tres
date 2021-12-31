@@ -16,4 +16,4 @@ script = ExtResource( 3 )
 noise = SubResource( 1 )
 tile_set = ExtResource( 2 )
 trees = ExtResource( 1 )
-tree_weight = 0.0
+tree_weight = -0.6

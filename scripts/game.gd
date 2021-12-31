@@ -47,6 +47,7 @@ func _process(_delta):
         var region = TerrainGenerator.get_generated_region(self.chunks[i])
         if region:
             $Terrain/Ground.update_terrain(region)
+            objects.update_terrain(region)
             self.chunks.remove(i)
 
 func swap_player():

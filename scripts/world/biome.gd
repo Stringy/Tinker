@@ -16,3 +16,6 @@ func get_tile_idx(x: float, y: float) -> int:
     if sample < 0.3:
         return ids[2]
     return ids[3]
+    
+func should_place_tree(x: float, y: float) -> bool:
+    return self.noise.get_noise_2d(x, y) < self.tree_weight
