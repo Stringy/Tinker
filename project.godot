@@ -99,6 +99,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Utils="*res://scripts/utils.gd"
+TerrainGenerator="*res://scenes/world/terrain_generator.tscn"
 
 [editor_plugins]
 

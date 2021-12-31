@@ -1,17 +1,19 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
-[ext_resource path="res://scripts/world/biome.gd" type="Script" id=1]
+[ext_resource path="res://tiles/world/plains_trees.tres" type="TileSet" id=1]
 [ext_resource path="res://tiles/grass_tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://tiles/world/plains_trees.tres" type="TileSet" id=3]
+[ext_resource path="res://scripts/world/biome.gd" type="Script" id=3]
 
 [sub_resource type="OpenSimplexNoise" id=1]
+seed = 1348365274
+octaves = 1
 period = 1.0
 persistence = 0.75
 lacunarity = 1.5
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource( 3 )
 noise = SubResource( 1 )
 tile_set = ExtResource( 2 )
-trees = ExtResource( 3 )
-tree_weight = 0.001
+trees = ExtResource( 1 )
+tree_weight = 0.0

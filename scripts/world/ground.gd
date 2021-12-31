@@ -8,17 +8,22 @@ var TILES = {
     'grass_v3': 3
 }
 
+func update_terrain(region):
+    print("updating ground")
+    print(region.transform)
+    for y in len(region.tiles):
+        var row = region.tiles[y]
+        for x in len(row):
+            self.set_cellv(Vector2(x, y), row[x])
+
 func generate(region: Rect2, biome: Biome):
     self.tile_set = biome.tile_set
 
-    print(region.position)
-    print(region.size)
-
-    var position = self.world_to_map(region.position)
-    var size = self.world_to_map(region.size)
-
-    var x_coord = position.x - (size.x / 2)
-    var y_coord = position.y - (size.y / 2)
+    var position = region.position
+    var size = region.size
+    
+    var x_coord = position.x
+    var y_coord = position.y
 
     for y in size.y:
         for x in size.x:

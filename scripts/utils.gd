@@ -47,3 +47,15 @@ func get_player():
     var players = get_tree().get_nodes_in_group("players")
     assert(len(players) == 1)
     return players[0]
+
+#
+# Converts a world position to a map coordinate
+#
+func world_to_map(position: Vector2, cell_size: Vector2 = Vector2(32, 32)):
+    return (position / cell_size).floor()
+
+#
+# Converts a map coordinate to a world position
+#
+func map_to_world(position: Vector2, cell_size: Vector2 = Vector2(32, 32)):
+    return position * cell_size
