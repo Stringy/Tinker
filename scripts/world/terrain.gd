@@ -1,54 +1,130 @@
-tool
 extends Node2D
 
-#
-#var ground_noise
-#var object_noise
+const num_workers: int = 5
 
-# the seed for the opensimplexnoise.
-# TODO: make it random
-export (int) var noise_seed = 250
+var worker_threads = []
+var job_ready: Semaphore
+var job_mutex: Mutex
+var job_queue: Array
 
-# the width/height of the terrain (in tiles)
-export (Vector2) var size = Vector2(256, 256)
+var exit_mutex: Mutex
+var should_exit: bool = false
 
-# the size of the border (in tiles)
-export (Vector2) var border = Vector2(32, 32)
+var terrain_mutex: Mutex
+var terrain: Dictionary = {}
 
-export (OpenSimplexNoise) var ground_noise
-export (OpenSimplexNoise) var object_noise
+var plains_biome = preload("res://resources/biomes/plains.tres")
 
-# These are used to store the computed internal
-# rectangle to trigger further terrain generation
-var top_left
-var bounds = Rect2()
+signal terrain_generated(area)
 
 func _ready():
-    randomize()
-    ground_noise.seed = randi()
-    object_noise.seed = randi()
+    job_ready = Semaphore.new()
+    job_mutex = Mutex.new()
+    job_queue = []
 
-    self.top_left = self.position - (self.size / 2) + self.border
-    self.bounds = Rect2(top_left, self.size - (self.border * 2))
-    $Ground.generate(ground_noise, self.position, self.size)
-    $Objects.generate(object_noise, self.position, self.size)
+    exit_mutex = Mutex.new()
+    terrain_mutex = Mutex.new()
 
-func _generate_world(position: Vector2):
-    #
-    # If you consider the generated terrain to be a rectangle,
-    # we compute an concentric rectangle to decide whether the position is
-    # getting close to an edge, so we need to generate some more terrain.
-    #
-    # If the position is outside the inner box, then we generate a new
-    # rectangle of generated terrain around the position, and update the
-    # border accordingly.
-    #
-    var center = $Ground.world_to_map(position)
-    if not self.bounds.has_point(center):
-        $Ground.generate(ground_noise, position, self.size)
-        $Objects.generate(object_noise, position, self.size)
-        top_left = center - (self.size / 2) + self.border
-        bounds = Rect2(top_left, self.size - (self.border * 2))
+    for i in self.num_workers:
+        var thread = Thread.new()
+        thread.start(self, "_terrain_generation")
+        self.worker_threads.append(thread)
 
-func world_to_map(position: Vector2):
-    return $Ground.world_to_map(position)
+#
+# Main thread function, for picking up jobs from the job queue
+# and generating terrain regions before posting them back to 
+# the completed generation list
+#
+func _terrain_generation():
+    while true:
+        if self._thread_should_stop():
+            break
+
+        var job = self._thread_get_job()
+        var region = self._generate_region(job)
+        self._post_generated_region(region)
+
+#
+# Helper function for checking whether the thread should exit
+#
+func _thread_should_stop():
+    self.exit_mutex.lock()
+    var stop = self.should_exit
+    self.exit_mutex.unlock()
+    return stop
+
+#
+# Attempts to get a job from the job queue. Handles waiting for 
+# new jobs.
+#
+func _thread_get_job():
+    var err = self.job_ready.wait()
+    if err != OK:
+        return err
+    self.job_mutex.lock()
+    var job = self.job_queue.pop_front()
+    self.job_mutex.unlock()
+    return job
+
+#
+# A region represents a generated part of the world. It 
+# contains biome information as well as object kind and placement
+#
+class Region:
+    var transform: Rect2
+    var biome: Biome
+    var tiles: Array = []
+    var trees: Array = []
+
+    func _to_string():
+        return "Region(" + str(self.transform) + ")"
+
+#
+# This actually does the work of generating a region of the terrain
+#
+func _generate_region(job: Rect2) -> Region:
+    var region = Region.new()
+    var biome = plains_biome
+    region.transform = job
+
+    for y in job.size.y:
+        var row = []
+        for x in job.size.x:
+            var x_coord = job.position.x + x
+            var y_coord = job.position.y + y
+            var idx = biome.get_tile_idx(x_coord, y_coord)
+            row.push_back(idx)
+            
+            if biome.should_place_tree(x_coord, y_coord):
+                region.trees.push_back(Vector2(x_coord, y_coord))
+        region.tiles.push_back(row)
+
+    return region
+    
+#
+# Sends the generated region to the completed list
+#
+func _post_generated_region(region: Region) -> void:
+    self.terrain_mutex.lock()
+    self.terrain[region.transform] = region
+    self.terrain_mutex.unlock()
+    self.emit_signal("terrain_generated", region.transform)
+
+#
+# Pushes the given region to the job queue for generation
+#
+func queue_generation(region: Rect2):
+    self.job_mutex.lock()
+    self.job_queue.push_back(region)
+    self.job_mutex.unlock()
+    self.job_ready.post()
+
+#
+# Retrieves a generated terrain region from the cache
+# TODO: figure out what to do if the region isn't generated yet
+#
+func get_generated_region(area: Rect2) -> Region:
+    self.terrain_mutex.lock()
+    var region = self.terrain.get(area)
+    self.terrain_mutex.unlock()
+    return region

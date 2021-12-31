@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
+"class": "Biome",
+"language": "GDScript",
+"path": "res://scripts/world/biome.gd"
+}, {
+"base": "Resource",
 "class": "Controller",
 "language": "GDScript",
 "path": "res://scripts/controllers/controller.gd"
@@ -63,8 +68,14 @@ _global_script_classes=[ {
 "class": "Wander",
 "language": "GDScript",
 "path": "res://scripts/controllers/wander.gd"
+}, {
+"base": "Node2D",
+"class": "WorldGenerator",
+"language": "GDScript",
+"path": "res://scripts/world/generator.gd"
 } ]
 _global_script_class_icons={
+"Biome": "",
 "Controller": "",
 "Follow": "",
 "Food": "",
@@ -75,7 +86,8 @@ _global_script_class_icons={
 "Mob": "",
 "Stat": "",
 "Thirst": "",
-"Wander": ""
+"Wander": "",
+"WorldGenerator": ""
 }
 
 [application]
@@ -87,6 +99,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Utils="*res://scripts/utils.gd"
+TerrainGenerator="*res://scenes/world/terrain_generator.tscn"
 
 [editor_plugins]
 

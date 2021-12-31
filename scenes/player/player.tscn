@@ -1033,11 +1033,11 @@ tracks/5/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 10.1542, 6.93422 )
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 4.88725 )
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 10.1542, 6.93422 )
 
 [node name="Actor" type="KinematicBody2D" groups=["family"]]
 position = Vector2( 482.071, 294.049 )
@@ -1067,6 +1067,10 @@ anims/up_idle = SubResource( 15 )
 anims/up_walk = SubResource( 16 )
 script = ExtResource( 15 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.464493, 11.8627 )
+shape = SubResource( 1 )
+
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 6 )
 hframes = 4
@@ -1079,10 +1083,6 @@ frame = 3
 position = Vector2( 0.0301971, 17.6343 )
 shape = SubResource( 17 )
 disabled = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.464493, 11.8627 )
-shape = SubResource( 1 )
 
 [connection signal="timeout" from="StatsTimer" to="." method="_on_stats_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]

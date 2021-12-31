@@ -1,53 +1,54 @@
-extends Node
+extends Node2D
 
-onready var ysort = $YSort
+onready var world = $World
 onready var ui_container = $GUI/Container
 onready var ui_inventory = $GUI/Container/PlayerBlock/Player/PlayerInventory
 onready var ui_stats = $GUI/Container/PlayerBlock/Player/PlayerStats
-onready var player = $YSort/Player
-onready var terrain = $Terrain
-onready var main_camera = $YSort/Player/MainCamera
+onready var player = $World/Player
+onready var map = $Terrain
+onready var objects = $World/Objects
+onready var main_camera = $World/Player/MainCamera
+onready var generation_area = $TerrainBounds
+onready var generation_shape = $TerrainBounds/CollisionShape2D
+
+export (Vector2) var world_size = Vector2(128, 128)
 
 var item_scene = preload("res://scenes/item.tscn") 
 var chicken_scene = preload("res://scenes/mobs/chicken.tscn")
 
 var random = RandomNumberGenerator.new()
 
+var plains_biome = preload("res://resources/biomes/plains.tres")
+
+var chunks = []
+
 func _ready():
     randomize()
     random.seed = randi()
-    terrain._generate_world(player.position)
+    
+    chunks.push_back(self.region_around_player())
+    TerrainGenerator.queue_generation(self.region_around_player())
+
     ui_container.connect("item_dropped", self, "spawn_dropped_item")
     ui_container.connect("canvas_clicked", player, "try_use_item")
- 
+
+func region_around_player() -> Rect2:
+    var top_left = Utils.world_to_map(player.position) - (self.world_size / 2)
+    return Rect2(top_left, self.world_size)
+
 func _process(_delta):
     if $Debug.is_active():
-        $Debug.process_debug(terrain, player)
+        $Debug.process_debug(player)
 
     if Input.is_action_just_pressed("ui_select"):
         self.swap_player()
-
-    if randf() < 0.05:
-        var chicken = chicken_scene.instance()
-        chicken.controller = Wander.new()
-
-        var view = get_viewport().get_visible_rect().size
-        var x = random.randf_range(-view.x, view.x)
-        var y = random.randf_range(-view.y, view.y)
-
-        if x < 0:
-            x -= view.x
-        else:
-            x += view.x
         
-        if y < 0:
-            y -= view.y
-        else:
-            y += view.y
-
-        chicken.position = player.position + Vector2(x, y)
-
-        $YSort.add_child(chicken)
+    for i in len(self.chunks):
+        var region = TerrainGenerator.get_generated_region(self.chunks[i])
+        if region:
+            $Terrain/Ground.update_terrain(region)
+            objects.update_terrain(region)
+            self.chunks.remove(i)
 
 func swap_player():
     var family = get_tree().get_nodes_in_group("family")
@@ -71,7 +72,6 @@ func swap_player():
     ui_container.disconnect("canvas_clicked", player, "try_use_item")
     player = other
     ui_container.connect("canvas_clicked", player, "try_use_item")
-    player.connect("moved", terrain, "_generate_world")
 
 
 func game_over():
@@ -86,3 +86,11 @@ func spawn_dropped_item(item: Item):
         increment = Vector2(50, 50)
     item_inst.position = player.position + Vector2(0, 25) + (increment * player.last_direction)
     self.add_child(item_inst)
+
+
+func _on_body_exit_region(body:Node):
+    if body == self.player:
+        var region = self.region_around_player()
+        TerrainGenerator.queue_generation(region)
+        self.chunks.push_back(region)
+        self.generation_area.position = self.player.position
