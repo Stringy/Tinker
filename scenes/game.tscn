@@ -17,12 +17,15 @@ size = 10
 [sub_resource type="RectangleShape2D" id=4]
 
 [node name="Root" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 6 )
 world_size = Vector2( 64, 64 )
 
 [node name="Terrain" parent="." instance=ExtResource( 4 )]
+pause_mode = 1
 
 [node name="World" type="YSort" parent="."]
+pause_mode = 1
 
 [node name="Player" parent="World" groups=["players"] instance=ExtResource( 8 )]
 position = Vector2( 1.85098, -1.97552 )

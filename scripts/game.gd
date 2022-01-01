@@ -53,9 +53,11 @@ func _process(delta):
             self.remove_child(menu_node)
             menu_node.queue_free()
             menu_node = null
+            get_tree().paused = false
         else:
             menu_node = esc_menu.instance()
             self.add_child(menu_node)
+            get_tree().paused = true
             
     for i in len(self.chunks):
         var region = TerrainGenerator.get_generated_region(self.chunks[i])

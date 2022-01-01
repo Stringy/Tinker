@@ -8,6 +8,7 @@ shader = ExtResource( 1 )
 shader_param/blur_amount = 1.5
 
 [node name="EscMenu" type="CanvasLayer"]
+pause_mode = 2
 script = ExtResource( 2 )
 
 [node name="BlurScreen" type="ColorRect" parent="."]
