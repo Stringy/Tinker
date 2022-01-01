@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://shaders/blur.gdshader" type="Shader" id=1]
+[ext_resource path="res://scripts/ui/esc_menu.gd" type="Script" id=2]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/blur_amount = 1.5
+
+[node name="EscMenu" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="BlurScreen" type="ColorRect" parent="."]
+material = SubResource( 2 )
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 494.0
+margin_top = 290.0
+margin_right = 529.0
+margin_bottom = 310.0
+
+[node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_right = 35.0
+margin_bottom = 20.0
+text = "Exit"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]

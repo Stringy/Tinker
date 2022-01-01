@@ -48,7 +48,6 @@ func _on_CullingRange_body_exited(body):
         self.objects.erase(body.position)
         body.queue_free()
 
-
 func _on_CullingRange_area_exited(area):
     if area.is_in_group("objects"):
         self.objects.erase(area.position)

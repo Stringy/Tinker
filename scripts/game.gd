@@ -17,6 +17,9 @@ export (Vector2) var world_size = Vector2(128, 128)
 
 var item_scene = preload("res://scenes/item.tscn") 
 var chicken_scene = preload("res://scenes/mobs/chicken.tscn")
+var esc_menu = preload("res://scenes/ui/esc_menu.tscn")
+
+var menu_node
 
 var random = RandomNumberGenerator.new()
 
@@ -31,7 +34,7 @@ func _ready():
     chunks.push_back(self.region_around_player())
     TerrainGenerator.queue_generation(self.region_around_player())
 
-    culling_area.shape.extents = Utils.map_to_world(self.world_size) / 4
+    culling_area.shape.extents = Utils.map_to_world(self.world_size) / 2
     generation_shape.shape.extents = Utils.map_to_world(self.world_size) / 4
     
     ui_container.connect("item_dropped", self, "spawn_dropped_item")
@@ -44,40 +47,22 @@ func region_around_player() -> Rect2:
 func _process(delta):
     if $Debug.is_active():
         $Debug.process_debug(player, delta)
-
-    if Input.is_action_just_pressed("ui_select"):
-        self.swap_player()
         
+    if Input.is_action_just_pressed("ui_cancel"):
+        if menu_node:
+            self.remove_child(menu_node)
+            menu_node.queue_free()
+            menu_node = null
+        else:
+            menu_node = esc_menu.instance()
+            self.add_child(menu_node)
+            
     for i in len(self.chunks):
         var region = TerrainGenerator.get_generated_region(self.chunks[i])
         if region:
             ground.call_deferred("update_terrain", region)
             objects.call_deferred("update_terrain", region)
             self.chunks.remove(i)
-
-func swap_player():
-    var family = get_tree().get_nodes_in_group("family")
-
-    var other = null
-    for person in family:
-        if person != player:
-            other = person
-            break
-
-    if not other:
-        print("no other to find... can't swap with player")
-        return
-    
-    player.remove_child(main_camera)
-    other.add_child(main_camera)
-    
-    other.toggle_is_player()
-    player.toggle_is_player()
-
-    ui_container.disconnect("canvas_clicked", player, "try_use_item")
-    player = other
-    ui_container.connect("canvas_clicked", player, "try_use_item")
-
 
 func game_over():
     print("player has died")
