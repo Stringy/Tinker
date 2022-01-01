@@ -9,7 +9,7 @@ var _consumable setget , consumable
 func _init():
     self._consumable = false
 
-func use(actor: Node) -> bool:
+func use(_actor: Node) -> bool:
     return false
 
 func consumable() -> bool:

@@ -13,9 +13,9 @@ func _ready():
     thirst = stats.thirst
     health = stats.health
 
-    hunger.connect("value_changed", self, "set_hunger")
-    thirst.connect("value_changed", self, "set_thirst")
-    health.connect("value_changed", self, "set_health")
+    Log.maybe_error(hunger.connect("value_changed", self, "set_hunger"))
+    Log.maybe_error(thirst.connect("value_changed", self, "set_thirst"))
+    Log.maybe_error(health.connect("value_changed", self, "set_health"))
 
     set_hunger(hunger.get_value(), 0.0)
     set_thirst(thirst.get_value(), 0.0)
@@ -45,9 +45,9 @@ func _on_new_player(player):
     thirst = stats.thirst
     health = stats.health
 
-    hunger.connect("value_changed", self, "set_hunger")
-    thirst.connect("value_changed", self, "set_thirst")
-    health.connect("value_changed", self, "set_health")
+    Log.maybe_error(hunger.connect("value_changed", self, "set_hunger"))
+    Log.maybe_error(thirst.connect("value_changed", self, "set_thirst"))
+    Log.maybe_error(health.connect("value_changed", self, "set_health"))
 
     set_hunger(hunger.get_value(), 0.0)
     set_thirst(thirst.get_value(), 0.0)

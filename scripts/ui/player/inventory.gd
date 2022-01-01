@@ -7,9 +7,9 @@ onready var slots = $SlotContainer
 func _ready():
     self.inventory = Utils.get_player().get_inventory()
 
-    inventory.connect("item_added", self, "add_item")
-    inventory.connect("item_removed", self, "remove_item")
-    inventory.connect("item_swapped", self, "swap_items")
+    Log.maybe_error(inventory.connect("item_added", self, "add_item"))
+    Log.maybe_error(inventory.connect("item_removed", self, "remove_item"))
+    Log.maybe_error(inventory.connect("item_swapped", self, "swap_items"))
     
     for i in slots.get_child_count():
         var slot = slots.get_child(i)
@@ -49,9 +49,9 @@ func _on_new_player(player):
 
     inventory = player.get_inventory()
 
-    inventory.connect("item_added", self, "add_item")
-    inventory.connect("item_removed", self, "remove_item")
-    inventory.connect("item_swapped", self, "swap_items")
+    Log.maybe_error(inventory.connect("item_added", self, "add_item"))
+    Log.maybe_error(inventory.connect("item_removed", self, "remove_item"))
+    Log.maybe_error(inventory.connect("item_swapped", self, "swap_items"))
 
     for i in slots.get_child_count():
         var slot = slots.get_child(i)

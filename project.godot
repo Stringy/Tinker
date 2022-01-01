@@ -100,6 +100,7 @@ config/icon="res://icon.png"
 
 Utils="*res://scripts/utils.gd"
 TerrainGenerator="*res://scenes/world/terrain_generator.tscn"
+Log="*res://scripts/log.gd"
 
 [editor_plugins]
 

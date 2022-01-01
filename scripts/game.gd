@@ -41,9 +41,9 @@ func region_around_player() -> Rect2:
     var top_left = Utils.world_to_map(player.position) - (self.world_size / 2)
     return Rect2(top_left, self.world_size)
 
-func _process(_delta):
+func _process(delta):
     if $Debug.is_active():
-        $Debug.process_debug(player)
+        $Debug.process_debug(player, delta)
 
     if Input.is_action_just_pressed("ui_select"):
         self.swap_player()

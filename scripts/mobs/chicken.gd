@@ -61,7 +61,7 @@ func die():
 func _init():
     randomize()
     
-func _process(delta):
+func _process(_delta):
     var update_seconds = update_seconds_base + randf()
     if Utils.should_update(last_state_update, update_seconds):
         self.state = _next_state()
@@ -78,7 +78,7 @@ func _process(delta):
             sprites.flip_h = true
         else:
             sprites.flip_h = false
-        self.move_and_slide(velocity)
+        var _ignore = self.move_and_slide(velocity)
 
 func hit(damage: float):
     .hit(damage)

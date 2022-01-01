@@ -121,7 +121,7 @@ func queue_generation(region: Rect2):
     self.job_mutex.lock()
     self.job_queue.push_back(region)
     self.job_mutex.unlock()
-    self.job_ready.post()
+    Log.maybe_error(self.job_ready.post())
 
 #
 # Retrieves a generated terrain region from the cache
