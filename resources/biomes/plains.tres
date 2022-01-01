@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
-[ext_resource path="res://tiles/world/plains_trees.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/world/grass.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tiles/grass_tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://scripts/world/biome.gd" type="Script" id=3]
 
@@ -15,5 +15,7 @@ lacunarity = 1.5
 script = ExtResource( 3 )
 noise = SubResource( 1 )
 tile_set = ExtResource( 2 )
-trees = ExtResource( 1 )
 tree_weight = -0.6
+has_grass = true
+grass_weight = -0.2
+grass = ExtResource( 1 )

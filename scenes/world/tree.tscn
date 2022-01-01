@@ -6,6 +6,7 @@
 [node name="Tree" type="StaticBody2D"]
 position = Vector2( 0, 1 )
 script = ExtResource( 2 )
+kind = 3
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -43 )

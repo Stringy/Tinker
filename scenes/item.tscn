@@ -23,9 +23,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -10 ), Vector2( 0, 0 ) ]
 }
 
-[node name="Item" type="Area2D" groups=[
-"items",
-]]
+[node name="Item" type="Area2D" groups=["items"]]
 position = Vector2( 0, -0.235275 )
 script = ExtResource( 1 )
 item = ExtResource( 2 )

@@ -61,7 +61,7 @@ func die():
 func _init():
     randomize()
     
-func _process(_delta):
+func _physics_process(_delta):
     var update_seconds = update_seconds_base + randf()
     if Utils.should_update(last_state_update, update_seconds):
         self.state = _next_state()
