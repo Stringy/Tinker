@@ -1,6 +1,6 @@
 extends Node2D
 
-const num_workers: int = 5
+const num_workers: int = 1
 
 var worker_threads = []
 var job_ready: Semaphore
