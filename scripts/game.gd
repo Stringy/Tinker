@@ -1,23 +1,18 @@
 extends Node2D
 
-onready var world = $World
 onready var ui_container = $GUI/Container
-onready var ui_inventory = $GUI/Container/PlayerBlock/Player/PlayerInventory
-onready var ui_stats = $GUI/Container/PlayerBlock/Player/PlayerStats
 onready var player = $World/Player
-onready var map = $Terrain
 onready var ground = $Terrain/Ground
 onready var objects = $World/Objects
-onready var main_camera = $World/Player/MainCamera
 onready var generation_area = $TerrainBounds
 onready var generation_shape = $TerrainBounds/CollisionShape2D
 onready var culling_area = $World/Player/CullingRange/CollisionShape2D
+onready var ui_overlay = $UIOverlay
 
 export (Vector2) var world_size = Vector2(128, 128)
 
 var item_scene = preload("res://scenes/item.tscn") 
 var chicken_scene = preload("res://scenes/mobs/chicken.tscn")
-var esc_menu = preload("res://scenes/ui/esc_menu.tscn")
 
 var menu_node
 
@@ -49,16 +44,11 @@ func _process(delta):
         $Debug.process_debug(player, delta)
         
     if Input.is_action_just_pressed("ui_cancel"):
-        if menu_node:
-            self.remove_child(menu_node)
-            menu_node.queue_free()
-            menu_node = null
-            get_tree().paused = false
+        if $UIOverlay.is_displaying():
+            $UIOverlay.stop_display()
         else:
-            menu_node = esc_menu.instance()
-            self.add_child(menu_node)
-            get_tree().paused = true
-            
+            $UIOverlay.display($UIOverlay.Kind.EscapeMenu)
+
     for i in len(self.chunks):
         var region = TerrainGenerator.get_generated_region(self.chunks[i])
         if region:

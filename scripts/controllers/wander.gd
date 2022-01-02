@@ -32,4 +32,5 @@ func calculate_movement():
     if OS.get_ticks_msec() - (wanderSeconds * 1000) < last_update:
         return self.velocity
     self.velocity = self._wander().normalized() * self.speed
+    self.last_update = OS.get_ticks_msec()
     return self.velocity
