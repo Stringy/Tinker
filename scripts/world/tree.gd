@@ -21,3 +21,7 @@ func _ready():
 
 func _to_string():
     return "Tree(@" + str(self.position) + ")"
+
+
+func _on_HurtBox_area_entered(area):
+    print("hit? ", area)

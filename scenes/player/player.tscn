@@ -1090,6 +1090,8 @@ hframes = 4
 vframes = 2
 
 [node name="Melee" type="Area2D" parent="Sprite"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Melee"]
 position = Vector2( 0.0301971, 4.71624 )

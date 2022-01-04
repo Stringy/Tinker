@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://tiles/tiles.png" type="Texture" id=1]
 [ext_resource path="res://scripts/world/tree.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.11002, 13.9334 )
 
 [node name="Tree" type="StaticBody2D"]
 position = Vector2( 0, 1 )
@@ -16,3 +19,13 @@ region_rect = Rect2( 768, 0, 96, 128 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -7, -4, -15, 3, -11, 17, 7, 17, 12, 5, 4, -4 )
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2( -1.98367, -8.29769 )
+shape = SubResource( 1 )
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
