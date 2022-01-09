@@ -1104,4 +1104,5 @@ shape = SubResource( 1 )
 
 [connection signal="timeout" from="StatsTimer" to="." method="_on_stats_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="area_shape_entered" from="Sprite/Melee" to="." method="_on_melee_attack_hits"]
 [connection signal="body_entered" from="Sprite/Melee" to="." method="_on_melee_attack_hits"]
