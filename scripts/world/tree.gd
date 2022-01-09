@@ -15,13 +15,12 @@ onready var sprite: Sprite = $Sprite
 
 func _ready():
     var rand = RandomNumberGenerator.new()
-    rand.seed = self.position.x * self.position.y
+    rand.seed = hash(self.position)
     self.kind = TreeType.values()[rand.randi() % len(TreeType.values())]
     sprite.region_rect.position.x += 32 * self.kind * 3
 
 func _to_string():
     return "Tree(@" + str(self.position) + ")"
 
-
-func _on_HurtBox_area_entered(area):
-    print("hit? ", area)
+func hit(damage: float):
+    print("tree hit for ", damage)
