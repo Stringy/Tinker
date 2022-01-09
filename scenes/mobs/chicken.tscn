@@ -229,6 +229,8 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=38]
 
 [node name="Chicken" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 3 )
 controller = SubResource( 35 )
 chicken_kind = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/ui/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/resources/inventory.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/ui/overlay.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scripts/world/objects.gd" type="Script" id=9]
+[ext_resource path="res://scripts/world/world.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=4]
 
@@ -33,6 +34,8 @@ shape = SubResource( 4 )
 
 [node name="World" type="YSort" parent="."]
 pause_mode = 1
+script = ExtResource( 10 )
+spawnable = [ ExtResource( 3 ) ]
 
 [node name="Player" parent="World" groups=["players"] instance=ExtResource( 8 )]
 position = Vector2( 1.85098, -1.97552 )
@@ -67,4 +70,5 @@ position = Vector2( 128, 64 )
 
 [connection signal="body_exited" from="TerrainBounds" to="." method="_on_body_exit_region"]
 [connection signal="area_exited" from="World/Player/CullingRange" to="World/Objects" method="_on_CullingRange_area_exited"]
+[connection signal="body_exited" from="World/Player/CullingRange" to="World" method="_on_CullingRange_body_exited"]
 [connection signal="body_exited" from="World/Player/CullingRange" to="World/Objects" method="_on_CullingRange_body_exited"]

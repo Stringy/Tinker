@@ -28,3 +28,7 @@ margin_bottom = 32.0
 [node name="Objects" type="Label" parent="Grid"]
 margin_right = 40.0
 margin_bottom = 14.0
+
+[node name="Mobs" type="Label" parent="Grid"]
+margin_right = 40.0
+margin_bottom = 14.0

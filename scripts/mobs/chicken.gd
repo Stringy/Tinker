@@ -32,7 +32,6 @@ var state_weights = {
 var flash_timer = Timer.new()
 
 func _ready():
-    ._ready()
     flash_timer.one_shot = true
     flash_timer.connect("timeout", self, "_on_flash_timeout")
 

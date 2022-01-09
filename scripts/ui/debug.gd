@@ -22,7 +22,10 @@ func process_debug(player, delta):
     $Grid/FPS.text = "FPS: " + str(Engine.get_frames_per_second())
     
     var objects = get_tree().get_nodes_in_group("objects")
-    $Grid/Objects.text = "Objects: " + str(len(objects))
+    $Grid/Objects.text = "Object #: " + str(len(objects))
+    
+    var mobs = get_tree().get_nodes_in_group("mobs")
+    $Grid/Mobs.text = "Mob #: " + str(len(mobs))
 
 func is_active():
     return $Grid.visible

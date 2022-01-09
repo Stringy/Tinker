@@ -143,8 +143,6 @@ func _on_stats_timeout():
 func _on_melee_attack_hits(body: Node):
     if body.has_method("hit"):
         body.hit(25)
-    # if body.get("health") != null and body.health is Health:
-    #     body.health.reduce_value(100)
 
 #
 # Signal handler for when an animation finishes. Returns to default

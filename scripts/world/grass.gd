@@ -9,7 +9,7 @@ enum GrassKind {
 
 onready var sprite: Sprite = $Sprite
 
-var kind
+export (GrassKind) var kind = GrassKind.A
 
 func _ready():
     var rand = RandomNumberGenerator.new()
